@@ -1,0 +1,70 @@
+# MSOE Client Manifest — example configuration
+# Copy to client.manifest.yml and fill in per-client values.
+# All values here are env-var overrides; the defaults in the code keep the
+# local demo working unchanged.
+
+# ---------------------------------------------------------------------------
+# School / organisation identity
+# ---------------------------------------------------------------------------
+school:
+  id: "default"                        # MSOE_SCHOOL_ID (used as school_id in all tables)
+  name: "MSOE Academy Dubai"            # MSOE_SCHOOL_NAME
+  name_short: "MSOE"                    # MSOE_SCHOOL_NAME_SHORT
+  system_name: "MSOE SIS"               # MSOE_SYSTEM_NAME
+  email: "admin@msoe.ae"                # MSOE_ORG_EMAIL
+  emirate: "Dubai"                      # MSOE_EMIRATE
+  curriculum: "British"                 # MSOE_CURRICULUM (British | IB | CBSE | MoE)
+
+# ---------------------------------------------------------------------------
+# Currency & contact defaults
+# ---------------------------------------------------------------------------
+currency:
+  code: "AED"                           # MSOE_CURRENCY (ISO code)
+  label: "AED د.إ"                     # MSOE_CURRENCY_LABEL (display string)
+
+defaults:
+  parent_email: "parent@msoe.ae"        # MSOE_PARENT_EMAIL
+  parent_phone: "+971500000000"         # MSOE_PARENT_PHONE
+  staff_email_domain: "msoe.ae"         # MSOE_STAFF_EMAIL_DOMAIN
+
+# ---------------------------------------------------------------------------
+# API authentication (F.6)
+# ---------------------------------------------------------------------------
+# Format: "school_id:secret,school_id2:secret2"
+# MSOE_API_KEYS= "default:your-secret-here,campus_a:other-secret"
+# Never commit real secrets. Use a secrets manager or env injection.
+api_keys: ""                            # MSOE_API_KEYS
+
+# ---------------------------------------------------------------------------
+# Database connections
+# ---------------------------------------------------------------------------
+postgres:
+  host: "localhost"                     # PGHOST
+  port: 5432                            # PGPORT
+  database: "msoe_db"                   # PGDATABASE
+  user: "msoe_admin"                    # PGUSER
+  password: ""                          # PGPASSWORD (set via env, never commit)
+
+neo4j:
+  uri: "bolt://localhost:7687"          # NEO4J_URI
+  user: "neo4j"                         # NEO4J_USER
+  password: ""                          # NEO4J_PASSWORD (set via env, never commit)
+
+# ---------------------------------------------------------------------------
+# Gibbon SIS connection (optional — only if using the Gibbon bridge)
+# ---------------------------------------------------------------------------
+gibbon_mysql:
+  host: "127.0.0.1"                     # GIBBON_MYSQL_HOST
+  port: 3306                            # GIBBON_MYSQL_PORT
+  user: "gibbon"                        # GIBBON_MYSQL_USER
+  password: ""                          # GIBBON_MYSQL_PASSWORD (set via env)
+  database: "gibbon"                    # GIBBON_MYSQL_DB
+
+# ---------------------------------------------------------------------------
+# LLM provider (optional — falls back to DeterministicLLM when unset)
+# ---------------------------------------------------------------------------
+llm:
+  provider: "openrouter"                # OPENROUTER_API_KEY triggers remote LLM
+  api_key: ""                           # OPENROUTER_API_KEY (set via env)
+  draft_budget_s: 20                    # MSOE_LLM_DRAFT_BUDGET_S
+  draft_workers: 8                      # MSOE_LLM_DRAFT_WORKERS

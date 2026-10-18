@@ -1,0 +1,142 @@
+name: msoe
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: msoe_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: msoe_admin
+      POSTGRES_PASSWORD: msoe_secure_2026
+      POSTGRES_DB: msoe_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - msoe_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U msoe_admin -d msoe_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    networks:
+      - msoe-net
+
+  neo4j:
+    image: neo4j:community
+    container_name: msoe_neo4j
+    restart: unless-stopped
+    environment:
+      NEO4J_AUTH: neo4j/msoe_graph_2026
+      NEO4J_PLUGINS: '["apoc"]'
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - msoe_neo4j_data:/data
+      - msoe_neo4j_logs:/logs
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:7474 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    networks:
+      - msoe-net
+
+  api:
+    image: msoe-api:latest
+    container_name: msoe_api
+    restart: unless-stopped
+    environment:
+      PGHOST: msoe_postgres
+      PGPORT: "5432"
+      PGDATABASE: msoe_db
+      PGUSER: msoe_admin
+      PGPASSWORD: msoe_secure_2026
+      NEO4J_URI: bolt://msoe_neo4j:7687
+      NEO4J_USER: neo4j
+      NEO4J_PASSWORD: msoe_graph_2026
+      # Secret passthrough from the host env — never hardcode a key here.
+      # Unset/empty keeps llm_client on its deterministic fallback.
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      OPENROUTER_MODEL: nvidia/nemotron-3.5-lightning
+      OPENROUTER_FALLBACK_MODEL: nvidia/nemotron-3.5-super-vl
+      # Per-client API keys (F.6). Format: "school_id:secret,school_id2:secret2".
+      # Demo default for local dev — override via host env in production.
+      MSOE_API_KEYS: ${MSOE_API_KEYS:-default:demo-api-key-2026}
+      GIBBON_MYSQL_HOST: gibbon_db
+      GIBBON_MYSQL_PORT: "3306"
+      GIBBON_MYSQL_DB: gibbon
+      GIBBON_MYSQL_USER: gibbon
+      GIBBON_MYSQL_PASSWORD: msoe_gibbon_2026
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      neo4j:
+        condition: service_healthy
+    networks:
+      - msoe-net
+
+  gibbon_db:
+    image: mysql:8.0
+    container_name: gibbon_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: gibbon
+      MYSQL_USER: gibbon
+      MYSQL_PASSWORD: msoe_gibbon_2026
+      MYSQL_ROOT_PASSWORD: msoe_gibbon_root_2026
+      TZ: Asia/Dubai
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - gibbon_db_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password --max-allowed-packet=256M
+    healthcheck:
+      test: ["CMD-SHELL", "mysql -h127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" -e 'SELECT 1'"]
+      interval: 10s
+      timeout: 5s
+      retries: 8
+      start_period: 30s
+    networks:
+      - msoe-net
+
+  gibbon_app:
+    image: gibbon-app:latest
+    container_name: gibbon_app
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./gibbon:/var/www/html
+      - ./gibbon/resources/ops/configuration/php/gibbon.ini:/usr/local/etc/php/conf.d/gibbon.ini:ro
+    environment:
+      ABSOLUTE_URL: http://localhost:8080
+      DB_HOST: gibbon_db
+      DB_NAME: gibbon
+      DB_USERNAME: gibbon
+      DB_PASSWORD: msoe_gibbon_2026
+      # Browser-facing base URL for the MSOE Dashboard module iframes.
+      MSOE_API_URL: ${MSOE_API_URL:-http://127.0.0.1:8000}
+    depends_on:
+      gibbon_db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "php", "-r", "exit(fsockopen('127.0.0.1', 80) ? 0 : 1);"]
+      interval: 10s
+      timeout: 5s
+      retries: 8
+      start_period: 15s
+    networks:
+      - msoe-net
+
+volumes:
+  msoe_pgdata:
+  msoe_neo4j_data:
+  msoe_neo4j_logs:
+  gibbon_db_data:
+
+networks:
+  msoe-net:
+    name: msoe_default

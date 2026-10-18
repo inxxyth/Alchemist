@@ -1,0 +1,1304 @@
+<title>Alchemist Proof Book</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+/* Layout: single-column evidence walkthrough with full-bleed bands;
+   content column ~1080px, reading measure ~65ch. */
+:root {
+  --bg:        #EDEEEA;
+  --surface:   #FFFFFF;
+  --surface-2: #F5F6F2;
+  --fg:        #161B1A;
+  --fg-2:      #4A5452;
+  --fg-3:      #737D7A;
+  --line:      #D4D8D1;
+  --line-soft: #E4E7E1;
+  --accent:    #2E6B63;
+  --accent-ink:#1F4A45;
+  --accent-soft:#DCEAE7;
+  --hold:      #8A6B2E;
+  --hold-soft: #F2E9D2;
+  --refuse:    #A04545;
+  --refuse-soft:#F2DEDE;
+  --good:      #2E6B63;
+  --good-soft: #DCEAE7;
+
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-data: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --gap: 20px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:        #121615;
+    --surface:   #1A201F;
+    --surface-2: #222A28;
+    --fg:        #E6E9E5;
+    --fg-2:      #A8B2AE;
+    --fg-3:      #7C8783;
+    --line:      #2E3735;
+    --line-soft: #252D2B;
+    --accent:    #5FA89E;
+    --accent-ink:#8FC7BF;
+    --accent-soft:#1D3330;
+    --hold:      #C9A85C;
+    --hold-soft: #352E1E;
+    --refuse:    #D4736F;
+    --refuse-soft:#3A2422;
+    --good:      #5FA89E;
+    --good-soft: #1D3330;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:        #121615;
+  --surface:   #1A201F;
+  --surface-2: #222A28;
+  --fg:        #E6E9E5;
+  --fg-2:      #A8B2AE;
+  --fg-3:      #7C8783;
+  --line:      #2E3735;
+  --line-soft: #252D2B;
+  --accent:    #5FA89E;
+  --accent-ink:#8FC7BF;
+  --accent-soft:#1D3330;
+  --hold:      #C9A85C;
+  --hold-soft: #352E1E;
+  --refuse:    #D4736F;
+  --refuse-soft:#3A2422;
+  --good:      #5FA89E;
+  --good-soft: #1D3330;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.band {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 56px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.band--tight { padding-block: 36px; }
+.band--ink {
+  background: var(--surface-2);
+}
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.measure { max-width: 63ch; }
+
+/* ---------- type ---------- */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+  margin: 0;
+  line-height: 1.14;
+}
+h1 { font-size: clamp(2.15rem, 5.2vw, 3.35rem); font-weight: 700; }
+h2 { font-size: clamp(1.55rem, 3.2vw, 2.15rem); margin-bottom: 14px; }
+h3 { font-size: 1.125rem; line-height: 1.3; letter-spacing: -0.005em; }
+
+p { margin: 0 0 1em; }
+p:last-child { margin-bottom: 0; }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin: 0 0 12px;
+}
+.lede {
+  font-size: 1.14rem;
+  line-height: 1.6;
+  color: var(--fg-2);
+}
+.small {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--fg-2);
+}
+.tiny {
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--fg-3);
+}
+.mono {
+  font-family: var(--font-data);
+  font-size: 0.8125rem;
+  letter-spacing: -0.01em;
+}
+.num { font-variant-numeric: tabular-nums; }
+
+/* ---------- masthead ---------- */
+.mast {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding-bottom: 28px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.brand-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+}
+.brand-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-data);
+  font-size: 0.72rem;
+  color: var(--fg-2);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 12px;
+  white-space: nowrap;
+}
+.stamp-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--good);
+  flex: none;
+}
+
+/* ---------- stat tiles ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+  gap: 12px;
+}
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 16px 16px 14px;
+  min-width: 0;
+}
+.stat-k {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin-bottom: 6px;
+}
+.stat-v {
+  font-family: var(--font-display);
+  font-size: 1.95rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.stat-v small {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--fg-3);
+  letter-spacing: 0;
+  margin-left: 3px;
+}
+.stat-s {
+  margin-top: 7px;
+  font-size: 0.78rem;
+  color: var(--fg-2);
+  line-height: 1.45;
+}
+
+/* ---------- chips ---------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-data);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.chip--good  { background: var(--good-soft);  color: var(--good);  border-color: color-mix(in srgb, var(--good) 28%, transparent); }
+.chip--hold  { background: var(--hold-soft);  color: var(--hold);  border-color: color-mix(in srgb, var(--hold) 30%, transparent); }
+.chip--refuse{ background: var(--refuse-soft);color: var(--refuse);border-color: color-mix(in srgb, var(--refuse) 30%, transparent); }
+.chip--plain { background: var(--surface-2);  color: var(--fg-2);  border-color: var(--line); }
+
+.chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ---------- citation chain (centrepiece) ---------- */
+.chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 10px;
+  margin: 26px 0 18px;
+}
+.node {
+  flex: 1 1 168px;
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 13px 14px 12px;
+  position: relative;
+}
+.node-kind {
+  font-family: var(--font-data);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin-bottom: 5px;
+}
+.node-name {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+.node-id {
+  margin-top: 8px;
+  font-family: var(--font-data);
+  font-size: 0.66rem;
+  color: var(--fg-3);
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+.rel {
+  flex: 0 0 auto;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: var(--fg-3);
+  font-family: var(--font-data);
+  font-size: 0.64rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  min-width: 62px;
+}
+.rel-arrow {
+  font-size: 1.05rem;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.path-caption {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  padding: 14px 16px;
+  overflow-x: auto;
+}
+.path-caption code {
+  font-family: var(--font-data);
+  font-size: 0.78rem;
+  color: var(--fg-2);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.7;
+}
+
+/* ---------- comparison ---------- */
+.vs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 22px;
+}
+.vs-col {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 22px 22px 18px;
+  min-width: 0;
+}
+.vs-col--them { background: var(--surface-2); }
+.vs-col--us {
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--line));
+  background: var(--surface);
+}
+.vs-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.vs-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+.vs-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.vs-list li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  align-items: start;
+  font-size: 0.925rem;
+  line-height: 1.55;
+  color: var(--fg-2);
+  min-width: 0;
+}
+.vs-list .mk {
+  font-family: var(--font-data);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  text-align: center;
+}
+.vs-col--them .mk { color: var(--fg-3); }
+.vs-col--us   .mk { color: var(--accent); font-weight: 500; }
+
+/* ---------- two-up cards ---------- */
+.twoup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 22px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.card--good   { border-top: 3px solid var(--good); }
+.card--refuse { border-top: 3px solid var(--refuse); }
+.card--hold   { border-top: 3px solid var(--hold); }
+
+.card-quote {
+  font-size: 0.95rem;
+  line-height: 1.62;
+  color: var(--fg);
+  background: var(--surface-2);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-md);
+  padding: 15px 16px;
+}
+.card-quote p { margin: 0 0 0.75em; }
+.card-quote p:last-child { margin: 0; }
+
+.reason {
+  font-family: var(--font-data);
+  font-size: 0.76rem;
+  line-height: 1.6;
+  color: var(--fg-2);
+  background: var(--surface-2);
+  border-radius: var(--r-sm);
+  padding: 10px 12px;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- guardrail / approval ---------- */
+.gr-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: 16px;
+  margin-top: 22px;
+}
+.gr-metric {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  min-width: 0;
+}
+.gr-row { display: flex; align-items: baseline; gap: 12px; min-width: 0; }
+.gr-num {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.gr-num--zero { color: var(--good); }
+.gr-label {
+  font-size: 0.85rem;
+  color: var(--fg-2);
+  line-height: 1.4;
+  min-width: 0;
+}
+
+.ticket {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.ticket-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+}
+.ticket-id {
+  font-family: var(--font-data);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--fg);
+}
+.ticket-body { padding: 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.kv {
+  display: grid;
+  grid-template-columns: 108px 1fr;
+  gap: 8px 12px;
+  font-size: 0.86rem;
+  min-width: 0;
+}
+.kv dt {
+  font-family: var(--font-data);
+  font-size: 0.71rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  padding-top: 2px;
+}
+.kv dd { margin: 0; color: var(--fg-2); overflow-wrap: anywhere; min-width: 0; }
+
+.mail {
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.mail-head {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line-soft);
+  font-family: var(--font-data);
+  font-size: 0.72rem;
+  color: var(--fg-3);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.mail-body {
+  padding: 15px 16px;
+  font-size: 0.885rem;
+  line-height: 1.65;
+  color: var(--fg-2);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- bars ---------- */
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin-top: 18px;
+}
+.bar-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 210px) 1fr minmax(88px, auto);
+  gap: 12px;
+  align-items: center;
+  min-width: 0;
+}
+.bar-name {
+  font-size: 0.845rem;
+  color: var(--fg-2);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.bar-track {
+  height: 12px;
+  background: var(--line-soft);
+  border-radius: 4px;
+  overflow: hidden;
+  min-width: 0;
+}
+.bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+  min-width: 3px;
+}
+.bar-val {
+  font-family: var(--font-data);
+  font-size: 0.78rem;
+  color: var(--fg);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ---------- ROI ledger ---------- */
+.roi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+  margin-top: 8px;
+}
+.roi-tile {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 18px;
+  min-width: 0;
+}
+.roi-tile .stat-v { font-size: 2.15rem; }
+
+details.assump {
+  margin-top: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+details.assump > summary {
+  cursor: pointer;
+  padding: 15px 20px;
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--fg);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+details.assump > summary::-webkit-details-marker { display: none; }
+details.assump > summary::after {
+  content: "+";
+  font-family: var(--font-data);
+  font-size: 1.05rem;
+  color: var(--fg-3);
+  flex: none;
+}
+details.assump[open] > summary::after { content: "−"; }
+details.assump > summary:hover { background: var(--surface-2); }
+.assump-inner {
+  padding: 4px 20px 22px;
+  border-top: 1px solid var(--line-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.rate-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.rate-table th, .rate-table td {
+  text-align: left;
+  padding: 7px 10px 7px 0;
+  border-bottom: 1px solid var(--line-soft);
+  vertical-align: top;
+}
+.rate-table th {
+  font-family: var(--font-data);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+.rate-table td { color: var(--fg-2); }
+.rate-table td.mono { font-family: var(--font-data); font-size: 0.76rem; white-space: nowrap; }
+.table-scroll { overflow-x: auto; }
+
+.note-box {
+  border: 1px solid color-mix(in srgb, var(--hold) 34%, var(--line));
+  background: var(--hold-soft);
+  color: var(--fg);
+  border-radius: var(--r-md);
+  padding: 14px 16px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.note-box strong { color: var(--hold); }
+
+/* ---------- engagement steps ---------- */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 22px;
+  counter-reset: step;
+}
+.step {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.step-n {
+  font-family: var(--font-data);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--accent-ink);
+}
+.step h3 { font-size: 1.18rem; }
+.step p { font-size: 0.9rem; color: var(--fg-2); margin: 0; }
+
+/* ---------- footer ---------- */
+.foot {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 34px 48px;
+  color: var(--fg-3);
+  font-size: 0.78rem;
+  line-height: 1.65;
+}
+.foot .wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+}
+
+hr.rule {
+  border: 0;
+  border-top: 1px solid var(--line-soft);
+  margin: 28px 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+@media (max-width: 860px) {
+  .vs, .twoup, .gr-split, .steps { grid-template-columns: 1fr; }
+  .bar-row { grid-template-columns: minmax(0, 1fr) minmax(60px, auto); }
+  .bar-row .bar-track { grid-column: 1 / -1; order: 3; }
+  .rel { min-width: 42px; }
+  .kv { grid-template-columns: 1fr; gap: 2px 0; }
+  .kv dd { margin-bottom: 8px; }
+}
+
+@media (max-width: 520px) {
+  .band { padding-block: 40px; }
+  .chain { flex-direction: column; }
+  .rel { flex-direction: row; justify-content: center; min-width: 0; padding: 2px 0; }
+  .rel-arrow { transform: rotate(90deg); }
+  .stat-v { font-size: 1.7rem; }
+  .gr-num { font-size: 2.15rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+
+<!-- ============================= MASTHEAD ============================= -->
+<header class="band band--tight">
+  <div class="wrap">
+    <div class="mast">
+      <div class="brand">
+        <span class="brand-name">Alchemist</span>
+        <span class="brand-tag">Proof Book · K-12 Automation</span>
+      </div>
+      <div class="stamp"><span class="stamp-dot" aria-hidden="true"></span> Live engine run · 18 Oct 2026</div>
+    </div>
+
+    <p class="eyebrow">What this is</p>
+    <h1>Automation that can show its working — or refuse to answer.</h1>
+    <p class="lede measure" style="margin-top:18px">
+      This is a walk-through of a real run of our delivery engine against a school-shaped
+      dataset. Every figure below came out of that run. Nothing here is a mock-up,
+      and nothing leaves the system without a named human approving it.
+    </p>
+
+    <div class="chip-row" style="margin-top:22px">
+      <span class="chip chip--plain">Engine: MSOE</span>
+      <span class="chip chip--plain">Graph: Neo4j</span>
+      <span class="chip chip--plain">SIS: Gibbon</span>
+      <span class="chip chip--good">LLM: Nemotron via OpenRouter</span>
+      <span class="chip chip--plain">Dataset: synthetic demo</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============================= LIVE RUN ============================= -->
+<section class="band band--ink">
+  <div class="wrap">
+    <p class="eyebrow">The run in one frame</p>
+    <h2>Fifty students in. Fifty-five risk cases out. Nothing sent.</h2>
+    <p class="measure small" style="margin-bottom:24px">
+      One compliance audit against the school's own records and policy pack, plus
+      an executive question answered from the same graph. Run duration for the
+      full audit: <strong>28 seconds</strong>.
+    </p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-k">Students examined</div>
+        <div class="stat-v num">50</div>
+        <div class="stat-s">Attendance, fees and vaccination records triaged</div>
+      </div>
+      <div class="stat">
+        <div class="stat-k">Risk cases</div>
+        <div class="stat-v num">55</div>
+        <div class="stat-s">Every one matched to a governing policy clause</div>
+      </div>
+      <div class="stat">
+        <div class="stat-k">Clause coverage</div>
+        <div class="stat-v num">55<small>/55</small></div>
+        <div class="stat-s">Cases with a governing clause. 2 policies cited</div>
+      </div>
+      <div class="stat">
+        <div class="stat-k">Actions staged</div>
+        <div class="stat-v num">55</div>
+        <div class="stat-s">Held for human approval</div>
+      </div>
+      <div class="stat">
+        <div class="stat-k">Actions executed</div>
+        <div class="stat-v num">0</div>
+        <div class="stat-s">No parent email, message or record write went out</div>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-k">Graph nodes</div>
+        <div class="stat-v num">724</div>
+        <div class="stat-s">674 Student · 30 Standard · 8 Department · 6 Competency · 3 Policy · 3 RiskFlag</div>
+      </div>
+      <div class="stat">
+        <div class="stat-k">Relationships</div>
+        <div class="stat-v num">669</div>
+        <div class="stat-s">HAS_RISK 323 · UNDER_JURISDICTION 298 · PART_OF 30 · GOVERNS 9 · DEFINES 6 · ADDRESSED_BY 3</div>
+      </div>
+      <div class="stat">
+        <div class="stat-k">Evidence rows</div>
+        <div class="stat-v num">25</div>
+        <div class="stat-s">Returned with the executive answer, each with a verified path</div>
+      </div>
+      <div class="stat">
+        <div class="stat-k">Time returned</div>
+        <div class="stat-v num">14.6<small>h</small></div>
+        <div class="stat-s">Across the sample engagement, per our published assumptions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= CITATION CHAIN ============================= -->
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">The difference</p>
+    <h2>Every answer carries a path, not a paragraph.</h2>
+    <p class="measure lede" style="margin-bottom:6px">
+      The engine does not read tables and guess. It traverses the school's own
+      knowledge graph — student to risk to the clause that governs it to the policy
+      that holds it — and it will only answer from paths the graph actually returns.
+    </p>
+
+    <div class="chip-row" style="margin:22px 0 4px">
+      <span class="chip chip--plain">Example case · Grade 1 · Sharjah American International School</span>
+      <span class="chip chip--good">verified_path</span>
+    </div>
+
+    <div class="chain" role="img" aria-label="Verified path: Student Abdullah Al Ameri to RiskFlag CHRONIC_ATTENDANCE to Standard Campus Health Services to Policy KHDA / ADEK Health and Safety Protocols">
+      <div class="node">
+        <div class="node-kind">Student</div>
+        <div class="node-name">Abdullah Al Ameri</div>
+        <div class="node-id">id 366 · Grade 1 · Sharjah</div>
+      </div>
+      <div class="rel"><span class="rel-arrow" aria-hidden="true">→</span><span>HAS_RISK</span></div>
+      <div class="node">
+        <div class="node-kind">RiskFlag</div>
+        <div class="node-name">CHRONIC_ATTENDANCE</div>
+        <div class="node-id">attendance risk, graph-linked</div>
+      </div>
+      <div class="rel"><span class="rel-arrow" aria-hidden="true">→</span><span>ADDRESSED_BY</span></div>
+      <div class="node">
+        <div class="node-kind">Standard</div>
+        <div class="node-name">Campus Health Services</div>
+        <div class="node-id">clause 4 · node 4:1e8bdd10…:360</div>
+      </div>
+      <div class="rel"><span class="rel-arrow" aria-hidden="true">→</span><span>PART_OF</span></div>
+      <div class="node">
+        <div class="node-kind">Policy</div>
+        <div class="node-name">KHDA / ADEK Health &amp; Safety Protocols</div>
+        <div class="node-id">MSOE-HS-2026-02 · node 4:1e8bdd10…:356</div>
+      </div>
+    </div>
+
+    <div class="path-caption">
+      <code>["Student:Abdullah Al Ameri",
+ "RiskFlag:CHRONIC_ATTENDANCE",
+ "Standard:Campus Health Services",
+ "Policy:KHDA / ADEK Health &amp; Safety Protocols"]</code>
+    </div>
+
+    <p class="tiny" style="margin-top:12px">
+      Node identifiers are Neo4j internal IDs, returned by the engine with the answer.
+      A principal, a compliance officer or an inspector can open the graph and land on
+      the same four nodes.
+    </p>
+
+    <!-- comparison -->
+    <div class="vs">
+      <div class="vs-col vs-col--them">
+        <div class="vs-head">
+          <div class="vs-title">A stock automation</div>
+          <span class="chip chip--plain">n8n / Make</span>
+        </div>
+        <ul class="vs-list">
+          <li><span class="mk" aria-hidden="true">·</span><span>Watches a trigger, fires a template. It has no idea which clause governs the case.</span></li>
+          <li><span class="mk" aria-hidden="true">·</span><span>Sends the parent email as the last node in the flow.</span></li>
+          <li><span class="mk" aria-hidden="true">·</span><span>An LLM step writes a summary. You cannot show where the claim came from.</span></li>
+          <li><span class="mk" aria-hidden="true">·</span><span>On a question with no data underneath it, it produces confident prose anyway.</span></li>
+          <li><span class="mk" aria-hidden="true">·</span><span>When an inspector asks "on what basis?", the answer is a screenshot of a workflow canvas.</span></li>
+        </ul>
+      </div>
+      <div class="vs-col vs-col--us">
+        <div class="vs-head">
+          <div class="vs-title">Alchemist</div>
+          <span class="chip chip--good">graph-grounded</span>
+        </div>
+        <ul class="vs-list">
+          <li><span class="mk" aria-hidden="true">✓</span><span>Resolves the case through the school's own graph and names the governing clause.</span></li>
+          <li><span class="mk" aria-hidden="true">✓</span><span>Drafts the parent letter and stages it. Nothing is transmitted until an officer approves.</span></li>
+          <li><span class="mk" aria-hidden="true">✓</span><span>Every answer ships with its <code class="mono">verified_path</code> and the policy reference behind it.</span></li>
+          <li><span class="mk" aria-hidden="true">✓</span><span>When the graph returns nothing, the engine refuses instead of inventing.</span></li>
+          <li><span class="mk" aria-hidden="true">✓</span><span>When an inspector asks "on what basis?", you open the path.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= GROUNDED VS REFUSED ============================= -->
+<section class="band band--ink">
+  <div class="wrap">
+    <p class="eyebrow">Grounded or nothing</p>
+    <h2>Two questions. One answered, one refused.</h2>
+    <p class="measure lede">
+      This is the behaviour you are actually buying. The same engine, the same session,
+      the same policy pack — and the second question is met with a refusal rather than
+      a plausible-sounding invention.
+    </p>
+
+    <div class="twoup">
+      <div class="card card--good">
+        <div class="chip-row">
+          <span class="chip chip--good">GROUNDED</span>
+          <span class="chip chip--plain">25 evidence rows</span>
+          <span class="chip chip--plain">intents: attendance, policy</span>
+        </div>
+        <h3 style="margin-top:2px">"Which students are at risk of chronic absence and what policy governs intervention?"</h3>
+        <div class="card-quote">
+          <p>The following students are flagged at risk of chronic absence: Abdullah Al Ameri, Aisha Al Ketbi, Emma Al Ameri, Faisal Al Rumaithi, Fatima Reddy, Hassan Thomas, Maha Al Ketbi, Mohammed Al Dhaheri, Omar Mathew, Priya Khan, Riya Al Falasi, Salem Ahmed, Salem Al Mansoori, Sophia Patel, Dana Sheikh, Diya Malik, Diya Smith, Ethan Hussain, Fahad Al Ketbi, Fahad Patel, Grace Khan, Ibrahim Al Ketbi, Ishita Joseph, Noah Al Tunaiji, Priya Smith.</p>
+          <p>Intervention is governed by KHDA / ADEK Health &amp; Safety Protocols, clause 4 (Campus Health Services), policy reference MSOE-HS-2026-02.</p>
+        </div>
+        <p class="tiny">Answer as returned by the engine, truncated only where the student list continues in the response payload.</p>
+      </div>
+
+      <div class="card card--refuse">
+        <div class="chip-row">
+          <span class="chip chip--refuse">REFUSED_INSUFFICIENT_DATA</span>
+          <span class="chip chip--plain">0 evidence rows</span>
+        </div>
+        <h3 style="margin-top:2px">A question the graph cannot support</h3>
+        <div class="card-quote">
+          <p>I cannot answer this query from verified sources. No matching student-risk-to-policy paths were found in the knowledge graph for the requested parameters. I will not generate an ungrounded answer.</p>
+        </div>
+        <div class="reason">refusal_reason: Graph-Grounded RAG policy: zero verified Neo4j paths returned. Hallucination is not permitted.</div>
+        <p class="tiny">A workflow would have produced a confident paragraph here. This engine returns nothing it cannot cite.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= GUARDRAIL ============================= -->
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">The guardrail</p>
+    <h2>Irreversible actions do not leave this system.</h2>
+    <p class="measure lede">
+      Drafting is automatic. Sending is not. Every parent notification, every
+      substitute assignment, every write to a student record is staged as
+      <code class="mono">PENDING_HUMAN_APPROVAL</code> and waits for an officer to decide.
+    </p>
+
+    <div class="gr-split">
+      <div class="gr-metric">
+        <div class="gr-row">
+          <div class="gr-num num">55</div>
+          <div class="gr-label">actions staged<br><span class="tiny">awaiting a named human decision</span></div>
+        </div>
+        <div class="gr-row">
+          <div class="gr-num num gr-num--zero">0</div>
+          <div class="gr-label">side effects executed<br><span class="tiny">no parent email, message or record write was released</span></div>
+        </div>
+        <div class="note-box">
+          <strong>Nothing is sent until an officer approves each action.</strong>
+          The approval queue is a first-class part of the product, not a log file.
+        </div>
+      </div>
+
+      <div class="ticket">
+        <div class="ticket-bar">
+          <span class="ticket-id">ACT-00001</span>
+          <span class="chip chip--hold">PENDING_HUMAN_APPROVAL</span>
+          <span class="chip chip--plain">WRITE</span>
+        </div>
+        <div class="ticket-body">
+          <dl class="kv">
+            <dt>Action</dt><dd>SEND_PARENT_NOTIFICATION</dd>
+            <dt>Channel</dt><dd>email</dd>
+            <dt>To</dt><dd>tariq.ahmed84@outlook.com</dd>
+            <dt>Student</dt><dd>Neha Ahmed · Grade 1 · Ras Al Khaimah Academy</dd>
+            <dt>Risk</dt><dd>FEE_OVERDUE · 68 days past due</dd>
+            <dt>Basis</dt><dd>Staff Safeguarding Handbook, clause 1 (Purpose and Scope) · MSOE-SAFEGUARD-2026-01§1</dd>
+            <dt>Created</dt><dd class="mono">2026-10-18T07:18:23Z</dd>
+            <dt>Resolved</dt><dd>— not yet —</dd>
+          </dl>
+
+          <div class="mail">
+            <div class="mail-head">
+              <span>subject: [MSOE Compliance] Action required for Neha Ahmed</span>
+              <span>drafted automatically · held for approval</span>
+            </div>
+            <div class="mail-body">Dear Tariq Ahmed, our finance office shows an outstanding fee balance more than 60 days past due for Neha Ahmed (Grade 1, Ras Al Khaimah Academy). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.</div>
+          </div>
+          <p class="tiny">The draft names the student, the school, the governing policy and the clause. An officer reads it and decides — approve or reject — before anything moves.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <h3 style="margin-bottom:8px">Risk mix from the same audit</h3>
+    <p class="small measure">Counts of cases surfaced. Coverage, not money.</p>
+    <div class="bars" role="img" aria-label="Risk cases by type: chronic attendance 29, fee overdue 20, vaccination expired 6">
+      <div class="bar-row">
+        <div class="bar-name">CHRONIC_ATTENDANCE</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+        <div class="bar-val">29 cases</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name">FEE_OVERDUE</div>
+        <div class="bar-track"><div class="bar-fill" style="width:69.0%"></div></div>
+        <div class="bar-val">20 cases</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name">VACCINATION_EXPIRED</div>
+        <div class="bar-track"><div class="bar-fill" style="width:20.7%"></div></div>
+        <div class="bar-val">6 cases</div>
+      </div>
+    </div>
+    <p class="tiny" style="margin-top:12px">55 cases total. Every case carried a governing clause. Reported as coverage counts only — not a claim of money saved.</p>
+  </div>
+</section>
+
+<!-- ============================= ROI LEDGER ============================= -->
+<section class="band band--ink">
+  <div class="wrap">
+    <p class="eyebrow">The ledger</p>
+    <h2>Time returned, with the arithmetic left in.</h2>
+    <p class="measure lede">
+      We instrument every run so the number can be argued with in a board meeting,
+      not just admired in a pitch. Here is the sample engagement's ledger, straight
+      from the engine — assumptions and method included.
+    </p>
+
+    <div class="roi-grid">
+      <div class="roi-tile">
+        <div class="stat-k">Hours returned</div>
+        <div class="stat-v num">14.63</div>
+        <div class="stat-s">Coordination and drafting time removed from staff</div>
+      </div>
+      <div class="roi-tile">
+        <div class="stat-k">Estimated value</div>
+        <div class="stat-v num">AED&nbsp;1,772</div>
+        <div class="stat-s">Hours × an explicit, editable role rate</div>
+      </div>
+      <div class="roi-tile">
+        <div class="stat-k">Unit events</div>
+        <div class="stat-v num">239</div>
+        <div class="stat-s">Across 16 recorded runs of the four services</div>
+      </div>
+      <div class="roi-tile">
+        <div class="stat-k">This audit alone</div>
+        <div class="stat-v num">5.5<small>h</small></div>
+        <div class="stat-s">AED 563 for the 50-student compliance run</div>
+      </div>
+    </div>
+
+    <h3 style="margin:30px 0 4px">Where the hours come from</h3>
+    <p class="small measure">Value by automated unit, sample engagement, AED.</p>
+    <div class="bars" role="img" aria-label="Estimated value by unit in AED: parent notification drafted 787, executive briefing composed 375, student risk reviewed 360, lesson gap analysis 120, policy clause matched 90, substitute cover coordinated 40">
+      <div class="bar-row">
+        <div class="bar-name">parent_notification_drafted</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+        <div class="bar-val">AED 787</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name">executive_briefing_composed</div>
+        <div class="bar-track"><div class="bar-fill" style="width:47.7%"></div></div>
+        <div class="bar-val">AED 375</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name">student_risk_reviewed</div>
+        <div class="bar-track"><div class="bar-fill" style="width:45.8%"></div></div>
+        <div class="bar-val">AED 360</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name">lesson_gap_analysis</div>
+        <div class="bar-track"><div class="bar-fill" style="width:15.3%"></div></div>
+        <div class="bar-val">AED 120</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name">policy_clause_matched</div>
+        <div class="bar-track"><div class="bar-fill" style="width:11.4%"></div></div>
+        <div class="bar-val">AED 90</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-name">substitute_cover_coordinated</div>
+        <div class="bar-track"><div class="bar-fill" style="width:5.1%"></div></div>
+        <div class="bar-val">AED 40</div>
+      </div>
+    </div>
+
+    <div class="note-box" style="margin-top:24px">
+      <strong>What this does not claim.</strong>
+      These figures measure coordination and drafting time removed from staff.
+      They do not claim wages avoided on substitutes, fee write-offs, or avoided
+      regulatory penalties — the school still bears those. A refusal records
+      <em>no</em> ROI, because no work was saved.
+    </div>
+
+    <details class="assump">
+      <summary>Assumptions and method — open to check the arithmetic</summary>
+      <div class="assump-inner">
+        <div>
+          <h3 style="font-size:1rem;margin-bottom:8px">Method</h3>
+          <p class="small" style="margin:0">
+            hours_returned = sum(unit_qty × minutes_per_unit) / 60.<br>
+            estimated_value = hours_returned × that unit's role rate.<br>
+            Rates are illustrative defaults, editable per engagement. Every figure
+            above is reproducible from the table below.
+          </p>
+        </div>
+
+        <div class="table-scroll">
+          <table class="rate-table">
+            <thead>
+              <tr><th>Unit</th><th>Min each</th><th>Role</th><th>Rate AED/h</th><th>Qty</th><th>Minutes</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>parent_notification_drafted</td>
+                <td class="mono num">4</td><td>admin</td><td class="mono num">100</td>
+                <td class="mono num">118</td><td class="mono num">472</td>
+              </tr>
+              <tr>
+                <td>executive_briefing_composed</td>
+                <td class="mono num">30</td><td>leadership</td><td class="mono num">250</td>
+                <td class="mono num">3</td><td class="mono num">90</td>
+              </tr>
+              <tr>
+                <td>student_risk_reviewed</td>
+                <td class="mono num">2</td><td>admin</td><td class="mono num">100</td>
+                <td class="mono num">108</td><td class="mono num">216</td>
+              </tr>
+              <tr>
+                <td>lesson_gap_analysis</td>
+                <td class="mono num">20</td><td>coordinator</td><td class="mono num">180</td>
+                <td class="mono num">2</td><td class="mono num">40</td>
+              </tr>
+              <tr>
+                <td>policy_clause_matched</td>
+                <td class="mono num">6</td><td>compliance</td><td class="mono num">150</td>
+                <td class="mono num">6</td><td class="mono num">36</td>
+              </tr>
+              <tr>
+                <td>substitute_cover_coordinated</td>
+                <td class="mono num">12</td><td>admin</td><td class="mono num">100</td>
+                <td class="mono num">2</td><td class="mono num">24</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <h3 style="font-size:1rem;margin-bottom:8px">What each unit measures</h3>
+          <div class="table-scroll">
+            <table class="rate-table">
+              <thead><tr><th>Unit</th><th>Basis</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">parent_notification_drafted</td><td>Draft, policy-check and review one parent compliance notification by hand.</td></tr>
+                <tr><td class="mono">policy_clause_matched</td><td>Locate and verify the governing policy clause for a risk case across the school's policy pack.</td></tr>
+                <tr><td class="mono">student_risk_reviewed</td><td>Triage one student's attendance, fee and vaccination records against the risk thresholds.</td></tr>
+                <tr><td class="mono">substitute_cover_coordinated</td><td>Identify cover for one leave request: check availability and subject match, then contact candidates. The school still pays the substitute — this is coordination time only.</td></tr>
+                <tr><td class="mono">lesson_gap_analysis</td><td>Curriculum coordinator gap analysis of one lesson plan against the MoE AI Competencies.</td></tr>
+                <tr><td class="mono">executive_briefing_composed</td><td>Pull reports, cross-reference attendance/fee/staff data and write a sourced briefing for leadership.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="tiny" style="margin:0">
+          Source: <code class="mono">GET /api/v1/roi/report</code> and
+          <code class="mono">GET /api/v1/roi/assumptions</code>. Events persist in
+          Postgres and survive a restart, so the ledger you invoice against is the
+          same one this page quotes.
+        </p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============================= ENGAGEMENT ============================= -->
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">How we work with a school</p>
+    <h2>Discovery, pilot, retainer.</h2>
+    <p class="measure lede">
+      We are an automation agency, not a licence reseller. The engagement is scoped
+      to the problems a school is actually losing time to, and the engine is our
+      delivery instrument — configured to <em>your</em> records and <em>your</em>
+      policy pack, not a generic template.
+    </p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">STEP 01</div>
+        <h3>Discovery</h3>
+        <p>
+          We sit with your operations and compliance leads, map where time actually
+          goes, and pull your policy pack into the graph. Output: a ranked list of
+          automations with a defensible hours estimate attached to each — before you
+          commit to anything.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-n">STEP 02</div>
+        <h3>Pilot</h3>
+        <p>
+          One workflow, end to end, on your live data with the guardrail on. You see
+          the staged actions, you approve or reject them, and you get the same ROI
+          ledger this page shows. If the numbers do not hold up in your office, we
+          stop there.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-n">STEP 03</div>
+        <h3>Retainer</h3>
+        <p>
+          The automations that earned their place go into production. We keep the
+          policy graph current as your documents change, extend coverage, and report
+          hours returned on a schedule you can take to your board.
+        </p>
+      </div>
+    </div>
+
+    <div class="note-box" style="margin-top:24px">
+      <strong>Why a knowledge graph is the moat.</strong>
+      Anyone can hire a workflow developer. Few can hand a principal a chain from a
+      named student to the clause that governs the action, keep that chain current as
+      policy documents change, and refuse to speak when the chain is not there. That
+      is the work.
+    </div>
+  </div>
+</section>
+
+<!-- ============================= FOOTER ============================= -->
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <strong style="color:var(--fg-2)">Provenance.</strong>
+      Every figure on this page was captured from a live run of the MSOE engine on
+      18 October 2026 against a synthetic demonstration dataset. Student names, schools
+      and email addresses are generated demo records. No real school data appears here.
+    </div>
+    <div>
+      <strong style="color:var(--fg-2)">Services in the run:</strong>
+      compliance audit · executive query · substitute dispatch · curriculum harmonize ·
+      approvals queue · ROI report. Engine sources: <code class="mono">main.py</code>,
+      <code class="mono">roi_model.py</code>, <code class="mono">llm_client.py</code>,
+      <code class="mono">gibbon_bridge.py</code>.
+    </div>
+    <div>
+      Alchemist — B2B AI automation for K-12. Automation grounded in your knowledge
+      graph, with irreversible actions held for human approval.
+    </div>
+  </div>
+</footer>

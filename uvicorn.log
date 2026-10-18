@@ -1,0 +1,7 @@
+[health] pg=True (0.03s) neo=True (0.01s)
+INFO:     127.0.0.1:49164 - "GET /health HTTP/1.1" 200 OK
+[health] pg=True (0.02s) neo=True (0.01s)
+INFO:     127.0.0.1:49170 - "GET /health HTTP/1.1" 200 OK
+[health] pg=True (0.02s) neo=True (0.01s)
+INFO:     127.0.0.1:49174 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49165 - "GET / HTTP/1.1" 200 OK
