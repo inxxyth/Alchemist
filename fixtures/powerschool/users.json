@@ -1,0 +1,43 @@
+{
+  "users": [
+    {
+      "sourcedId": "PS-501",
+      "status": "active",
+      "enabledUser": "TRUE",
+      "givenName": "Synthetic",
+      "familyName": "Alfa",
+      "role": "student",
+      "grade": "07",
+      "orgSourcedIds": "PS-ORG-1"
+    },
+    {
+      "sourcedId": "PS-502",
+      "status": "active",
+      "enabledUser": "TRUE",
+      "givenName": "Synthetic",
+      "familyName": "Bravo",
+      "role": "student",
+      "grade": "08",
+      "orgSourcedIds": "PS-ORG-1"
+    },
+    {
+      "sourcedId": "PS-503",
+      "status": "active",
+      "enabledUser": "TRUE",
+      "givenName": "Synthetic",
+      "familyName": "Charlie",
+      "role": "student",
+      "grade": "06",
+      "orgSourcedIds": "PS-ORG-1"
+    },
+    {
+      "sourcedId": "PS-T01",
+      "status": "active",
+      "enabledUser": "TRUE",
+      "givenName": "Synthetic",
+      "familyName": "Teacherone",
+      "role": "teacher",
+      "orgSourcedIds": "PS-ORG-1"
+    }
+  ]
+}

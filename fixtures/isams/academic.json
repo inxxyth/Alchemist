@@ -1,0 +1,16 @@
+{
+  "academic": [
+    {
+      "StudentId": "ISAMS-1001",
+      "NCYear": "Year 7",
+      "Term": "Term 1 AY2025-26",
+      "FormGroup": "7B"
+    },
+    {
+      "StudentId": "ISAMS-1004",
+      "NCYear": "Year 8",
+      "Term": "Term 1 AY2025-26",
+      "FormGroup": "8A"
+    }
+  ]
+}

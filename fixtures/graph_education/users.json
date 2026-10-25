@@ -1,0 +1,106 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#educationUsers",
+  "value": [
+    {
+      "@odata.type": "#microsoft.graph.educationUser",
+      "id": "graph-user-1001",
+      "displayName": "TEST Student Alpha",
+      "givenName": "TEST Student",
+      "surname": "Alpha",
+      "middleName": "",
+      "mail": "alpha@synthetic.example",
+      "primaryRole": "student",
+      "studentId": "SIS-1001",
+      "accountEnabled": true,
+      "student": {
+        "externalSource": "sis",
+        "externalId": "SIS-1001",
+        "birthDate": "2013-04-12",
+        "gender": "female",
+        "grade": "08"
+      }
+    },
+    {
+      "@odata.type": "#microsoft.graph.educationUser",
+      "id": "graph-user-1002",
+      "displayName": "TEST Student Beta",
+      "givenName": "TEST Student",
+      "surname": "Beta",
+      "mail": "beta@synthetic.example",
+      "primaryRole": "student",
+      "studentId": "SIS-1002",
+      "accountEnabled": true,
+      "student": {
+        "externalSource": "sis",
+        "externalId": "SIS-1002",
+        "birthDate": "2015-11-02",
+        "gender": "male",
+        "grade": "KG"
+      }
+    },
+    {
+      "@odata.type": "#microsoft.graph.educationUser",
+      "id": "graph-user-1003",
+      "displayName": "TEST Student Gamma",
+      "givenName": "TEST Student",
+      "surname": "Gamma",
+      "mail": "gamma@synthetic.example",
+      "primaryRole": "student",
+      "studentId": "SIS-1003",
+      "accountEnabled": true,
+      "student": {
+        "externalSource": "sis",
+        "externalId": "SIS-1003",
+        "birthDate": "2012-01-30",
+        "gender": "other"
+      }
+    },
+    {
+      "@odata.type": "#microsoft.graph.educationUser",
+      "id": "graph-user-1004",
+      "displayName": "TEST Student Delta",
+      "givenName": "TEST Student",
+      "surname": "Delta",
+      "mail": "delta@synthetic.example",
+      "primaryRole": "student",
+      "studentId": "SIS-1004",
+      "accountEnabled": false,
+      "status": "tobedeleted",
+      "student": {
+        "externalSource": "sis",
+        "externalId": "SIS-1004",
+        "birthDate": "2012-06-15",
+        "gender": "female",
+        "grade": "10"
+      }
+    },
+    {
+      "@odata.type": "#microsoft.graph.educationUser",
+      "id": "graph-user-2001",
+      "displayName": "TEST Teacher One",
+      "givenName": "TEST Teacher",
+      "surname": "One",
+      "mail": "teacher.one@synthetic.example",
+      "primaryRole": "teacher",
+      "accountEnabled": true,
+      "teacher": {
+        "externalSource": "sis",
+        "externalId": "SIS-T-2001"
+      }
+    },
+    {
+      "@odata.type": "#microsoft.graph.educationUser",
+      "id": "graph-user-2002",
+      "displayName": "TEST Teacher Two",
+      "givenName": "TEST Teacher",
+      "surname": "Two",
+      "mail": "teacher.two@synthetic.example",
+      "primaryRole": "teacher",
+      "accountEnabled": true,
+      "teacher": {
+        "externalSource": "sis",
+        "externalId": "SIS-T-2002"
+      }
+    }
+  ]
+}

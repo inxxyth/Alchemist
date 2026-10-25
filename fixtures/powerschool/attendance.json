@@ -1,0 +1,11 @@
+{
+  "attendance": [
+    {"studentId": "PS-501", "date": "2026-10-05", "attendanceCode": "Present", "periodId": "1"},
+    {"studentId": "PS-501", "date": "2026-10-05", "attendanceCode": "Tardy", "periodId": "2"},
+    {"studentId": "PS-501", "date": "2026-10-06", "attendanceCode": "A", "periodId": "1"},
+    {"studentId": "PS-502", "date": "2026-10-05", "attendanceCode": "Excused", "periodId": "1"},
+    {"studentId": "PS-502", "date": "2026-10-05", "attendanceCode": "P", "periodId": "2"},
+    {"studentId": "PS-502", "date": "2026-10-06", "attendanceCode": "ADA", "periodId": "1"},
+    {"studentId": "PS-999", "periodId": "1"}
+  ]
+}

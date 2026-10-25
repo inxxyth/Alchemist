@@ -68,6 +68,24 @@ services:
       GIBBON_MYSQL_DB: gibbon
       GIBBON_MYSQL_USER: gibbon
       GIBBON_MYSQL_PASSWORD: msoe_gibbon_2026
+      # Policy-pack library (Phase 5) — see policy_vault/FORMAT.md.
+      # MSOE_POLICY_PACK is the pack governing school_id "default".
+      # MSOE_POLICY_PACK_MAP is a JSON object {"school_id": "/path/to/pack"}
+      # for every other school; a school absent from both gets no pack, so no
+      # risk is linked to another school's clauses.
+      MSOE_POLICY_PACK: ${MSOE_POLICY_PACK:-policy_vault}
+      MSOE_POLICY_PACK_MAP: ${MSOE_POLICY_PACK_MAP:-}
+      # Compliance (Phase 6) — see docs/compliance/.
+      # MSOE_DATA_REGION: allowed UAE Azure region (uae-north / uae-central).
+      #   Unset or unknown => /health reports degraded + residency_check.py
+      #   fails loudly.  Proof of the residency claim (K.7).
+      MSOE_DATA_REGION: ${MSOE_DATA_REGION:-uae-north}
+      # MSOE_LLM_EXTERNAL: "off" forces DeterministicLLM — no external
+      #   inference at all, provable via /health llm.external_allowed (K.4).
+      MSOE_LLM_EXTERNAL: ${MSOE_LLM_EXTERNAL:-on}
+      # MSOE_RETENTION_DAYS: horizon for retention_sweep.py on
+      #   attendance_logs / audit_log.  Students are never swept (K.6).
+      MSOE_RETENTION_DAYS: ${MSOE_RETENTION_DAYS:-365}
     ports:
       - "8000:8000"
     depends_on:

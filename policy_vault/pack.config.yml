@@ -1,0 +1,60 @@
+# Policy-pack configuration — MSOE UAE reference pack.
+#
+# These three maps used to be hardcoded in build_knowledge_graph.py and
+# (in a divergent copy) in sis_adapter.sync_students_to_graph.  They now live
+# here so a client pack supplies its own without touching engine code.
+# Schema + rules: policy_vault/FORMAT.md.  Authoring guide: policy_vault/README.md.
+#
+# Keys are spelled exactly as the Python constants they replace, so the
+# extraction is auditable by diff.
+
+schema_version: 1
+pack_id: "msoe-uae-reference"
+
+# --- DEPARTMENTS -----------------------------------------------------------
+# Upserted as (:Department) nodes and targeted by POLICY_DEPT_RULES.
+DEPARTMENTS:
+  - {name: "KHDA", full_name: "Knowledge and Human Development Authority", jurisdiction: "Dubai"}
+  - {name: "ADEK", full_name: "Abu Dhabi Department of Education and Knowledge", jurisdiction: "Abu Dhabi"}
+  - {name: "MoHAP", full_name: "Ministry of Health and Prevention", jurisdiction: "UAE Federal"}
+  - {name: "MoE", full_name: "UAE Ministry of Education", jurisdiction: "UAE Federal"}
+  - {name: "Civil Defence", full_name: "UAE Civil Defence", jurisdiction: "UAE Federal"}
+  - {name: "Student Welfare", full_name: "Directorate of Student Welfare & Child Protection", jurisdiction: "MSOE Internal"}
+  - {name: "Campus Operations", full_name: "Head of Campus Operations & Compliance", jurisdiction: "MSOE Internal"}
+  - {name: "Finance", full_name: "School Finance & Bursar Office", jurisdiction: "MSOE Internal"}
+
+# --- POLICY_DEPT_RULES -----------------------------------------------------
+# Case-insensitive substring match on the Policy H1 title -> (p)-[:GOVERNS]->(d).
+POLICY_DEPT_RULES:
+  - {match: "Safeguarding", dept: "Student Welfare"}
+  - {match: "Safeguarding", dept: "KHDA"}
+  - {match: "Safeguarding", dept: "ADEK"}
+  - {match: "Health", dept: "Campus Operations"}
+  - {match: "Health", dept: "KHDA"}
+  - {match: "Health", dept: "ADEK"}
+  - {match: "Health", dept: "MoHAP"}
+  - {match: "Health", dept: "Civil Defence"}
+  - {match: "AI Curriculum", dept: "MoE"}
+
+# --- RISK_POLICY_MAP -------------------------------------------------------
+# risk type -> governing policy document + the clause heading keyword that
+# selects which Standard the risk is ADDRESSED_BY.
+#
+#   policy_file     : pack document stem (the .md basename without extension)
+#   clause_keyword  : case-insensitive substring matched against the parsed
+#                     Standard heading (the text after `## N. `).
+#
+# Resolution picks the lowest-numbered clause whose heading contains the
+# keyword; if none matches it falls back to the first clause of that document.
+# validate_policy_pack.py flags a keyword that matches nothing, because that
+# fallback is exactly the silent mis-link gap #8 warns about.
+RISK_POLICY_MAP:
+  VACCINATION_EXPIRED:
+    policy_file: "khda_adek_health_safety_protocols"
+    clause_keyword: "Campus Health"
+  CHRONIC_ATTENDANCE:
+    policy_file: "khda_adek_health_safety_protocols"
+    clause_keyword: "Campus Health"
+  FEE_OVERDUE:
+    policy_file: "staff_safeguarding_handbook"
+    clause_keyword: "Purpose"

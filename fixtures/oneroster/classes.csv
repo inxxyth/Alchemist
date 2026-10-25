@@ -1,0 +1,4 @@
+sourcedId,status,title,courseSourcedId,classCode,classType,location,schoolSourcedIds,termSourcedIds,subjects,periods
+cls-01,active,SYNTHETIC Maths 10A,crs-01,TEST-MATH-10A,homeroom,Room T1,org-camp-a,term-sem2-ay2526,Mathematics,1
+cls-02,active,SYNTHETIC Science 7B,crs-02,TEST-SCI-7B,homeroom,Room T2,org-camp-a,term-sem2-ay2526,Science,2
+cls-03,active,SYNTHETIC Arabic 10C,crs-03,TEST-ARA-10C,homeroom,Room T3,org-camp-b,term-full-ay2526,Arabic,3

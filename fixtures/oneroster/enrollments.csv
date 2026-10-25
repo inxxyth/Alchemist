@@ -1,0 +1,6 @@
+sourcedId,status,classSourcedId,schoolSourcedId,userSourcedId,role,primary,beginDate,endDate
+enr-01,active,cls-01,org-camp-a,usr-1001,student,true,2025-08-25,2026-06-18
+enr-02,active,cls-02,org-camp-a,usr-1002,student,true,2025-08-25,2026-06-18
+enr-03,active,cls-03,org-camp-b,usr-1003,student,true,2025-09-01,2026-07-02
+enr-04,active,cls-01,org-camp-a,usr-2001,teacher,true,2025-08-25,2026-06-18
+enr-05,active,cls-03,org-camp-b,usr-2002,teacher,true,2025-09-01,2026-07-02

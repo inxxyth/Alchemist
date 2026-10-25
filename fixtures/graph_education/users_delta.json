@@ -1,0 +1,24 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#educationUsers",
+  "value": [
+    {
+      "@odata.type": "#microsoft.graph.educationUser",
+      "id": "graph-user-1001",
+      "displayName": "TEST Student Alpha",
+      "givenName": "TEST Student",
+      "surname": "Alpha",
+      "mail": "alpha@synthetic.example",
+      "primaryRole": "student",
+      "studentId": "SIS-1001",
+      "accountEnabled": true,
+      "student": {
+        "externalSource": "sis",
+        "externalId": "SIS-1001",
+        "birthDate": "2013-04-12",
+        "gender": "female",
+        "grade": "08"
+      }
+    }
+  ],
+  "@odata.deltaLink": "https://graph.microsoft.com/v1.0/education/users/delta?$deltatoken=TEST-DELTA-TOKEN-2"
+}

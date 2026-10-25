@@ -1,0 +1,59 @@
+{
+  "students": [
+    {
+      "StudentId": "ISAMS-1001",
+      "FirstName": "Aisha",
+      "Surname": "Al Mansoori",
+      "Gender": "F",
+      "DateOfBirth": "2012-04-11",
+      "NCYear": "Year 7",
+      "IsActive": true,
+      "AdmissionDate": "2023-09-01",
+      "Nationality": "UAE",
+      "SchoolName": "Synthetic British School",
+      "Emirate": "Abu Dhabi",
+      "Curriculum": "British"
+    },
+    {
+      "StudentId": "ISAMS-1002",
+      "FirstName": "Daniel",
+      "Surname": "Okoro",
+      "Gender": "M",
+      "DateOfBirth": "2011-01-23",
+      "NCYear": "Year 8",
+      "Status": "Full",
+      "AdmissionDate": "2022-09-01",
+      "Nationality": "Nigerian",
+      "SchoolName": "Synthetic British School",
+      "Emirate": "Abu Dhabi",
+      "Curriculum": "British"
+    },
+    {
+      "StudentId": "ISAMS-1003",
+      "FirstName": "Priya",
+      "Surname": "Raghavan",
+      "Gender": "F",
+      "DateOfBirth": "2013-07-02",
+      "NCYear": "Year 6",
+      "IsActive": false,
+      "Status": "Left",
+      "AdmissionDate": "2021-09-01",
+      "Nationality": "Indian",
+      "SchoolName": "Synthetic British School",
+      "Emirate": "Abu Dhabi",
+      "Curriculum": "British"
+    },
+    {
+      "StudentId": "ISAMS-1004",
+      "FirstName": "Synthetic",
+      "Surname": "Testchild",
+      "Gender": "X",
+      "DateOfBirth": "2012-12-01",
+      "IsActive": true,
+      "Nationality": "Test",
+      "SchoolName": "Synthetic British School",
+      "Emirate": "Dubai",
+      "Curriculum": "IB"
+    }
+  ]
+}

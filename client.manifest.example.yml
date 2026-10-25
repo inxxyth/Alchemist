@@ -1,7 +1,75 @@
 # MSOE Client Manifest — example configuration
 # Copy to client.manifest.yml and fill in per-client values.
-# All values here are env-var overrides; the defaults in the code keep the
-# local demo working unchanged.
+#
+# Connector-manifest schema (Phase 2 C.2 — validated by connectors/manifest.py):
+#   client_id · school_id_map · dialect · credential_env_names[]
+#   sync.mode · sync.schedule · policy_pack.path
+#   engagement_id · currency · org_name
+#
+# MANIFESTS HOLD NAMES, NEVER VALUES.  Credential fields list environment
+# variable NAMES; connectors resolve the actual secret from the process
+# environment at call time.  The validator rejects secret-shaped literals.
+#
+# All values below are also env-var overrides; the defaults in the code keep
+# the local demo working unchanged.
+
+# ---------------------------------------------------------------------------
+# Connector identity (required)
+# ---------------------------------------------------------------------------
+client_id: "msoe-demo"                    # unique per client group
+dialect: "gibbon"                         # registered connector name:
+                                          #   gibbon | openeducat | canvas
+                                          #   | oneroster-csv | oneroster-rest
+                                          #   | graph_education | isams
+                                          #   | powerschool | csv_drop
+school_id_map:                            # source school/organisation id -> school_id
+  "default": "default"                    # one isolated instance per client group
+
+credential_env_names:                     # env var NAMES only — never values
+  - "GIBBON_MYSQL_HOST"
+  - "GIBBON_MYSQL_PORT"
+  - "GIBBON_MYSQL_USER"
+  - "GIBBON_MYSQL_PASSWORD"
+  - "GIBBON_MYSQL_DB"
+# OneRoster REST example (when dialect: oneroster-rest):
+#   - "ONEROSTER_BASE_URL"
+#   - "ONEROSTER_TOKEN_URL"
+#   - "ONEROSTER_CLIENT_ID"
+#   - "ONEROSTER_CLIENT_SECRET"
+# iSAMS example (when dialect: isams):
+#   - "ISAMS_BASE_URL"
+#   - "ISAMS_CLIENT_ID"
+#   - "ISAMS_CLIENT_SECRET"
+#   - "ISAMS_TENANT"
+# PowerSchool example (when dialect: powerschool — OneRoster profile + extras):
+#   - "POWERSCHOOL_BASE_URL"
+#   - "POWERSCHOOL_CLIENT_ID"
+#   - "POWERSCHOOL_CLIENT_SECRET"
+# CSV drop example (when dialect: csv_drop):
+#   - "CSV_DROP_DIR"
+
+sync:
+  mode: "pull"                            # pull | webhook | batch | sftp
+  schedule: "0 */4 * * *"                 # cron-style; "" = on-demand only
+
+policy_pack:
+  # Markdown policy pack — the reuse asset (see policy_vault/FORMAT.md for the
+  # document rules and pack.config.yml schema, INTEGRATION-PLAN §5.5 for the
+  # strategy).  A pack is a flat directory: the three maps
+  # (DEPARTMENTS / POLICY_DEPT_RULES / RISK_POLICY_MAP) live in
+  # <path>/pack.config.yml, policy documents are the other *.md files.
+  path: "policy_vault"                    # MSOE_POLICY_PACK (pack for school_id "default")
+  # Per-school packs (Phase 5 P.3) — JSON object, school_id -> pack directory.
+  # A school listed here resolves its clauses from its own pack; a school in
+  # neither this map nor the default path gets no pack at all, so its risks are
+  # never linked to another school's clauses.  Env name only — the value is a
+  # path map, not a secret.
+  #   MSOE_POLICY_PACK_MAP='{"campus_a": "policy_vaults/campus_a"}'
+  school_map_env: "MSOE_POLICY_PACK_MAP"
+
+engagement_id: "default"                  # ROI + billing scoping
+currency: "AED"
+org_name: "MSOE Academy Dubai"
 
 # ---------------------------------------------------------------------------
 # School / organisation identity
@@ -18,7 +86,7 @@ school:
 # ---------------------------------------------------------------------------
 # Currency & contact defaults
 # ---------------------------------------------------------------------------
-currency:
+currency_config:
   code: "AED"                           # MSOE_CURRENCY (ISO code)
   label: "AED د.إ"                     # MSOE_CURRENCY_LABEL (display string)
 
@@ -36,7 +104,7 @@ defaults:
 api_keys: ""                            # MSOE_API_KEYS
 
 # ---------------------------------------------------------------------------
-# Database connections
+# Database connections (env var NAMES documented inline)
 # ---------------------------------------------------------------------------
 postgres:
   host: "localhost"                     # PGHOST
@@ -51,7 +119,7 @@ neo4j:
   password: ""                          # NEO4J_PASSWORD (set via env, never commit)
 
 # ---------------------------------------------------------------------------
-# Gibbon SIS connection (optional — only if using the Gibbon bridge)
+# Gibbon SIS connection (optional — only if using the Gibbon connector)
 # ---------------------------------------------------------------------------
 gibbon_mysql:
   host: "127.0.0.1"                     # GIBBON_MYSQL_HOST
@@ -59,6 +127,44 @@ gibbon_mysql:
   user: "gibbon"                        # GIBBON_MYSQL_USER
   password: ""                          # GIBBON_MYSQL_PASSWORD (set via env)
   database: "gibbon"                    # GIBBON_MYSQL_DB
+
+# ---------------------------------------------------------------------------
+# OneRoster 1.2 (optional — only if using the OneRoster connectors)
+# ---------------------------------------------------------------------------
+# CSV bulk set: point csv_dir at a directory holding orgs.csv, users.csv,
+# classes.csv, courses.csv, enrollments.csv, demographics.csv.
+# REST: set ONEROSTER_BASE_URL + ONEROSTER_TOKEN_URL + client id/secret env.
+oneroster:
+  csv_dir: ""                           # ONEROSTER_CSV_DIR
+  base_url: ""                          # ONEROSTER_BASE_URL
+  token_url: ""                         # ONEROSTER_TOKEN_URL
+
+# ---------------------------------------------------------------------------
+# iSAMS (optional — only if using the isams connector)
+# ---------------------------------------------------------------------------
+# OAuth2 client-credentials against the iSAMS identity host; the developer
+# portal is partner-gated (see IMPLEMENTATION-LEDGER N.1).
+isams:
+  base_url: ""                          # ISAMS_BASE_URL
+  tenant: ""                            # ISAMS_TENANT
+  school_id_map: {}                     # ISAMS_SCHOOL_ID_MAP (JSON, optional)
+
+# ---------------------------------------------------------------------------
+# PowerSchool (optional — only if using the powerschool connector)
+# ---------------------------------------------------------------------------
+# Rostering rides the OneRoster 1.2 profile ({base}/ims/oneroster/v1p2);
+# attendance + fees come from {base}/ws/v1 — one OAuth token serves both.
+powerschool:
+  base_url: ""                          # POWERSCHOOL_BASE_URL
+  school_id_map: {}                     # POWERSCHOOL_SCHOOL_ID_MAP (JSON, optional)
+
+# ---------------------------------------------------------------------------
+# CSV drop (optional — only if using the csv_drop connector)
+# ---------------------------------------------------------------------------
+# Tier 3 fallback: a directory the school's IT drops contract-shaped CSVs
+# into (see connectors/csv_drop/field_maps.py for the column contract).
+csv_drop:
+  directory: ""                         # CSV_DROP_DIR
 
 # ---------------------------------------------------------------------------
 # LLM provider (optional — falls back to DeterministicLLM when unset)

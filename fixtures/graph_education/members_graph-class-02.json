@@ -1,0 +1,11 @@
+{
+  "value": [
+    {
+      "@odata.type": "#microsoft.graph.educationUser",
+      "id": "graph-user-1003",
+      "displayName": "TEST Student Gamma",
+      "primaryRole": "student",
+      "roles": ["student"]
+    }
+  ]
+}

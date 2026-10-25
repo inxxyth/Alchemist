@@ -1,0 +1,10 @@
+{
+  "orgs": [
+    {
+      "sourcedId": "PS-ORG-1",
+      "status": "active",
+      "name": "SYNTHETIC PowerSchool Academy",
+      "type": "school"
+    }
+  ]
+}

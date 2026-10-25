@@ -1,0 +1,7 @@
+sourcedId,status,enabledUser,username,givenName,familyName,middleName,identifier,email,sms,phone,agentSourcedIds,orgSourcedIds,role,grade
+usr-1001,active,TRUE,test.student.alpha,TEST Student,Alpha,,TEST-ID-1001,alpha.parent@synthetic.example,,,agent-2001,org-camp-a,student,08
+usr-1002,active,TRUE,test.student.beta,TEST Student,Beta,,TEST-ID-1002,beta.parent@synthetic.example,,,agent-2002,org-camp-a,student,KG
+usr-1003,active,TRUE,test.student.gamma,TEST Student,Gamma,,TEST-ID-1003,gamma.parent@synthetic.example,,,agent-2003,org-camp-b,student,
+usr-1004,tobedeleted,FALSE,test.student.delta,TEST Student,Delta,,TEST-ID-1004,delta.parent@synthetic.example,,,agent-2004,org-camp-b,student,10
+usr-2001,active,TRUE,test.teacher.one,TEST Teacher,One,,TEST-TID-2001,teacher.one@synthetic.example,,,,org-camp-a,teacher,
+usr-2002,active,TRUE,test.teacher.two,TEST Teacher,Two,,TEST-TID-2002,teacher.two@synthetic.example,,,,org-camp-b,teacher,

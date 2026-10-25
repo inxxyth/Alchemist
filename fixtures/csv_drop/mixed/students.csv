@@ -1,0 +1,4 @@
+source_student_id,first_name,last_name,notes,school_id
+CSV-301,Mixed,One,hello,other-school
+CSV-302,Mixed,Two,world,other-school
+CSV-303,,Three,x,other-school

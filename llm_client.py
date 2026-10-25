@@ -51,6 +51,18 @@ REQUEST_TIMEOUT_S = float(os.environ.get("OPENROUTER_TIMEOUT_S", "25"))
 MAX_TOKENS = int(os.environ.get("OPENROUTER_MAX_TOKENS", "1024"))
 TEMPERATURE = float(os.environ.get("OPENROUTER_TEMPERATURE", "0"))  # deterministic
 
+# External-inference kill switch (Phase 6 / K.4). MSOE_LLM_EXTERNAL=off forces
+# the DeterministicLLM path: no request ever leaves the instance, even when
+# OPENROUTER_API_KEY is set. Provable via GET /health -> llm.external_allowed.
+LLM_EXTERNAL_ENV = "MSOE_LLM_EXTERNAL"
+_EXTERNAL_OFF_VALUES = frozenset({"off", "false", "0", "no", "disabled", "deterministic"})
+
+
+def external_inference_allowed() -> bool:
+    """True unless MSOE_LLM_EXTERNAL is set to an off-value (default: on)."""
+    raw = os.environ.get(LLM_EXTERNAL_ENV, "on")
+    return raw.strip().lower() not in _EXTERNAL_OFF_VALUES
+
 
 # ---------------------------------------------------------------------------
 # Deterministic engine (always available, zero network)
@@ -215,6 +227,10 @@ class LLMClient:
 
     def __init__(self) -> None:
         self.api_key: Optional[str] = os.environ.get(OPENROUTER_API_KEY_ENV) or None
+        self.external_allowed = external_inference_allowed()
+        if not self.external_allowed:
+            # Kill switch wins over any configured key — nothing leaves the box.
+            self.api_key = None
         self.base_url = OPENROUTER_BASE_URL.rstrip("/")
         self.model = DEFAULT_MODEL
         self.fallback_model = FALLBACK_MODEL
@@ -245,6 +261,8 @@ class LLMClient:
             "api_key_configured": self.has_api_key,
             "api_key_env": OPENROUTER_API_KEY_ENV,
             "temperature": self.temperature,
+            "external_allowed": self.external_allowed,
+            "external_env": LLM_EXTERNAL_ENV,
             "last_provider": self.last_provider,
             "last_error": self.last_error,
         }
@@ -254,6 +272,10 @@ class LLMClient:
     def chat(self, system: str, user: str,
              model: Optional[str] = None) -> dict[str, Any]:
         """Call OpenRouter chat/completions. Raises on transport/API errors."""
+        if not self.external_allowed:
+            raise RuntimeError(
+                f"{LLM_EXTERNAL_ENV}=off — external inference is disabled by configuration"
+            )
         if not self.api_key:
             raise RuntimeError(
                 f"{OPENROUTER_API_KEY_ENV} is not set — cannot call OpenRouter"
@@ -381,11 +403,23 @@ class LLMClient:
         if not self.has_api_key or not violations:
             return det
         system = self._grounding_system("compliance violation summary")
+        # Data minimisation (Phase 6 / K.4): never send national IDs, contact
+        # details or health/fee detail to the provider. Name, grade, school and
+        # risk type are enough for the counts-by-risk summary this call writes.
+        minimal = [
+            {
+                "student_name": v.get("student_name"),
+                "grade_level": v.get("grade_level"),
+                "school_name": v.get("school_name"),
+                "risk_type": v.get("risk_type"),
+            }
+            for v in violations
+        ]
         user = (
             "Summarise the following compliance violations for a UAE school "
             "leadership audience. Count by risk_type. Remind that parent "
             "notifications require human approval.\n\n"
-            f"VIOLATIONS_JSON:\n{json.dumps(violations, default=str)[:6000]}"
+            f"VIOLATIONS_JSON:\n{json.dumps(minimal, default=str)[:6000]}"
         )
         text = self._chat_or_none(system, user)
         if not text or "REFUSED_INSUFFICIENT_DATA" in text:

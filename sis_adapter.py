@@ -41,6 +41,10 @@ from contextlib import contextmanager
 import psycopg2
 from neo4j import GraphDatabase
 
+# Policy-pack library — the ADDRESSED_BY clause resolution (one source of
+# truth, shared with build_knowledge_graph).  See policy_vault/FORMAT.md.
+import policy_pack
+
 # Connection settings mirror main.py / docker-compose (no import cycle).
 PG_CONFIG = {
     "host": os.environ.get("PGHOST", "localhost"),
@@ -102,136 +106,104 @@ RISK_TYPES = ("VACCINATION_EXPIRED", "CHRONIC_ATTENDANCE", "FEE_OVERDUE")
 # ---------------------------------------------------------------------------
 # Dialect field maps — source key → canonical key
 # ---------------------------------------------------------------------------
+# The per-dialect maps live in connectors/<dialect>/field_maps.py (C.1): the
+# connector package owns the *source* shapes, this module owns the canonical
+# normalisers and the upserts.  The dicts below are reassembled here so the
+# public map_student()/map_staff()/… API keeps working for legacy callers.
 
+from connectors.base import (  # noqa: E402
+    CANONICAL_ATTENDANCE_MAP,
+    CANONICAL_FEE_MAP,
+    CANONICAL_STAFF_MAP,
+    CANONICAL_STUDENT_MAP,
+)
+from connectors.gibbon.field_maps import (  # noqa: E402
+    ATTENDANCE_FIELD_MAP as _GIBBON_ATTENDANCE_MAP,
+    FEE_FIELD_MAP as _GIBBON_FEE_MAP,
+    STUDENT_FIELD_MAP as _GIBBON_STUDENT_MAP,
+    STAFF_FIELD_MAP as _GIBBON_STAFF_MAP,
+)
+from connectors.openeducat.field_maps import (  # noqa: E402
+    ATTENDANCE_FIELD_MAP as _OPENEDUCAT_ATTENDANCE_MAP,
+    FEE_FIELD_MAP as _OPENEDUCAT_FEE_MAP,
+    STUDENT_FIELD_MAP as _OPENEDUCAT_STUDENT_MAP,
+    STAFF_FIELD_MAP as _OPENEDUCAT_STAFF_MAP,
+)
+from connectors.canvas.field_maps import (  # noqa: E402
+    ATTENDANCE_FIELD_MAP as _CANVAS_ATTENDANCE_MAP,
+    FEE_FIELD_MAP as _CANVAS_FEE_MAP,
+    STUDENT_FIELD_MAP as _CANVAS_STUDENT_MAP,
+    STAFF_FIELD_MAP as _CANVAS_STAFF_MAP,
+)
+from connectors.oneroster.field_maps import (  # noqa: E402
+    STUDENT_FIELD_MAP as _ONEROSTER_STUDENT_MAP,
+    STAFF_FIELD_MAP as _ONEROSTER_STAFF_MAP,
+)
+
+# "canonical" = connector output (identity map; normalisers still apply).
+# "oneroster" = raw OneRoster CSV/REST row keys arriving via the HTTP contracts.
 STUDENT_FIELD_MAPS: dict[str, dict[str, str]] = {
-    "gibbon": {
-        "gibbonPersonID": "source_student_id",
-        "nationalID": "emirates_id",
-        "firstName": "first_name",
-        "surname": "last_name",
-        "grade": "grade_level",
-        "curriculum": "curriculum_track",
-        "school": "school_name",
-        "emirate": "emirate",
-        "parent_name": "parent_full_name",
-        "parent_email": "parent_email",
-        "vaccination_status": "vaccination_status",
-        "vaccination_expiry": "vaccination_expiry",
-    },
-    "openeducat": {
-        "id": "source_student_id",
-        "emirates_id": "emirates_id",
-        "first_name": "first_name",
-        "last_name": "last_name",
-        "grade_level": "grade_level",
-        "course": "curriculum_track",
-        "school_name": "school_name",
-        "emirate": "emirate",
-        "guardian_name": "parent_full_name",
-        "guardian_email": "parent_email",
-        "vaccination_status": "vaccination_status",
-        "vaccination_expiry": "vaccination_expiry",
-    },
-    "canvas": {
-        "sis_user_id": "source_student_id",
-        "national_id": "emirates_id",
-        "first_name": "first_name",
-        "last_name": "last_name",
-        "grade_level": "grade_level",
-        "curriculum_track": "curriculum_track",
-        "school_name": "school_name",
-        "emirate": "emirate",
-        "parent_full_name": "parent_full_name",
-        "parent_email": "parent_email",
-        "vaccination_status": "vaccination_status",
-        "vaccination_expiry": "vaccination_expiry",
-    },
+    "gibbon": _GIBBON_STUDENT_MAP,
+    "openeducat": _OPENEDUCAT_STUDENT_MAP,
+    "canvas": _CANVAS_STUDENT_MAP,
+    "canonical": CANONICAL_STUDENT_MAP,
+    "oneroster": _ONEROSTER_STUDENT_MAP,
 }
 
 ATTENDANCE_FIELD_MAPS: dict[str, dict[str, str]] = {
-    "gibbon": {
-        "gibbonPersonID": "source_student_id",
-        "date": "attendance_date",
-        # gibbonAttendanceCode.name ("Present", "Present - Late", "Absent", ...).
-        # The raw gibbonAttendanceLogPerson.type column is Core/Additional, not a status.
-        "name": "status",
-    },
-    "openeducat": {
-        "student_id": "source_student_id",
-        "attendance_date": "attendance_date",
-        "status": "status",
-    },
-    "canvas": {
-        "sis_user_id": "source_student_id",
-        "attendance_date": "attendance_date",
-        "status": "status",
-    },
+    "gibbon": _GIBBON_ATTENDANCE_MAP,
+    "openeducat": _OPENEDUCAT_ATTENDANCE_MAP,
+    "canvas": _CANVAS_ATTENDANCE_MAP,
+    "canonical": CANONICAL_ATTENDANCE_MAP,
 }
 
 FEE_FIELD_MAPS: dict[str, dict[str, str]] = {
-    "gibbon": {
-        "gibbonPersonID": "source_student_id",
-        "amount": "amount_due",
-        "amount_paid": "amount_paid",
-        "dueDate": "due_date",
-        "status": "status",
-        "days_overdue": "days_overdue",
-    },
-    "openeducat": {
-        "student_id": "source_student_id",
-        "amount_due": "amount_due",
-        "amount_paid": "amount_paid",
-        "due_date": "due_date",
-        "status": "status",
-        "days_overdue": "days_overdue",
-    },
-    "canvas": {
-        "sis_user_id": "source_student_id",
-        "amount_due": "amount_due",
-        "amount_paid": "amount_paid",
-        "due_date": "due_date",
-        "status": "status",
-        "days_overdue": "days_overdue",
-    },
+    "gibbon": _GIBBON_FEE_MAP,
+    "openeducat": _OPENEDUCAT_FEE_MAP,
+    "canvas": _CANVAS_FEE_MAP,
+    "canonical": CANONICAL_FEE_MAP,
 }
 
 STAFF_FIELD_MAPS: dict[str, dict[str, str]] = {
-    "gibbon": {
-        "gibbonStaffID": "source_staff_id",
-        "fullName": "full_name",
-        "email": "email",
-        "subjects": "subjects",
-        "is_available": "is_available",
-        "max_periods": "max_periods",
-        "assigned": "assigned",
-    },
-    "openeducat": {
-        "id": "source_staff_id",
-        "full_name": "full_name",
-        "email": "email",
-        "subjects": "subjects",
-        "is_available": "is_available",
-        "max_periods": "max_periods",
-        "assigned": "assigned",
-    },
-    "canvas": {
-        "sis_user_id": "source_staff_id",
-        "name": "full_name",
-        "email": "email",
-        "subjects": "subjects",
-        "is_available": "is_available",
-        "max_periods": "max_periods",
-        "assigned": "assigned",
-    },
+    "gibbon": _GIBBON_STAFF_MAP,
+    "openeducat": _OPENEDUCAT_STAFF_MAP,
+    "canvas": _CANVAS_STAFF_MAP,
+    "canonical": CANONICAL_STAFF_MAP,
+    "oneroster": _ONEROSTER_STAFF_MAP,
 }
+
+# Request ``dialect`` values that mean "rows are already canonical" (they come
+# out of a SourceConnector, or out of the OneRoster mapper).
+_CANONICAL_DIALECTS = frozenset({"canonical", "oneroster-csv", "oneroster-rest", "oneroster"})
 
 
 # ---------------------------------------------------------------------------
 # Pure mapping helpers
 # ---------------------------------------------------------------------------
 
+def _normalize_dialect(dialect: Optional[str]) -> str:
+    """Map request dialect names onto field-map keys.
+
+    Raw OneRoster rows (CSV headers / REST property names — the same
+    identifiers in 1.2) use the ``oneroster`` column map.  Rows that already
+    came out of a :class:`connectors.base.SourceConnector` use ``canonical``
+    (identity map + normalisers) via :func:`ingest_batch`.
+    """
+    if not dialect:
+        return ""
+    if dialect in {"oneroster", "oneroster-csv", "oneroster-rest"}:
+        return "oneroster"
+    if dialect == "canonical":
+        return "canonical"
+    return dialect
+
+
 def _detect_dialect(row: dict[str, Any]) -> Optional[str]:
     keys = set(row.keys())
+    # OneRoster first — its keys (sourcedId/givenName) are distinctive and do
+    # not collide with the legacy dialect maps.
+    if keys & {"sourcedId", "classSourcedId", "userSourcedId"}:
+        return "oneroster"
     for dialect, fmap in (
         ("gibbon", STUDENT_FIELD_MAPS["gibbon"]),
         ("openeducat", STUDENT_FIELD_MAPS["openeducat"]),
@@ -320,7 +292,7 @@ def _normalize_curriculum(raw: Any) -> str:
 def map_student(row: dict[str, Any], dialect: Optional[str] = None,
                 school_id: str = DEFAULT_SCHOOL_ID) -> dict[str, Any]:
     """Normalise a SIS student row to the MSOE ``students`` shape."""
-    dialect = dialect or _detect_dialect(row) or "canvas"
+    dialect = _normalize_dialect(dialect) or _detect_dialect(row) or "canvas"
     fmap = STUDENT_FIELD_MAPS.get(dialect, STUDENT_FIELD_MAPS["canvas"])
     canon = _apply_map(row, fmap)
     first = str(canon.get("first_name") or row.get("firstName") or row.get("first_name") or "").strip()
@@ -365,7 +337,7 @@ def map_student(row: dict[str, Any], dialect: Optional[str] = None,
 
 def map_attendance(row: dict[str, Any], dialect: Optional[str] = None,
                    school_id: str = DEFAULT_SCHOOL_ID) -> dict[str, Any]:
-    dialect = dialect or _detect_dialect(row) or "canvas"
+    dialect = _normalize_dialect(dialect) or _detect_dialect(row) or "canvas"
     fmap = ATTENDANCE_FIELD_MAPS.get(dialect, ATTENDANCE_FIELD_MAPS["canvas"])
     canon = _apply_map(row, fmap)
     source_sid = canon.get("source_student_id") or row.get("source_student_id")
@@ -383,7 +355,7 @@ def map_attendance(row: dict[str, Any], dialect: Optional[str] = None,
 
 def map_fee(row: dict[str, Any], dialect: Optional[str] = None,
             school_id: str = DEFAULT_SCHOOL_ID) -> dict[str, Any]:
-    dialect = dialect or _detect_dialect(row) or "canvas"
+    dialect = _normalize_dialect(dialect) or _detect_dialect(row) or "canvas"
     fmap = FEE_FIELD_MAPS.get(dialect, FEE_FIELD_MAPS["canvas"])
     canon = _apply_map(row, fmap)
     try:
@@ -436,7 +408,7 @@ def map_fee(row: dict[str, Any], dialect: Optional[str] = None,
 
 def map_staff(row: dict[str, Any], dialect: Optional[str] = None,
               school_id: str = DEFAULT_SCHOOL_ID) -> dict[str, Any]:
-    dialect = dialect or _detect_dialect(row) or "canvas"
+    dialect = _normalize_dialect(dialect) or _detect_dialect(row) or "canvas"
     fmap = STAFF_FIELD_MAPS.get(dialect, STAFF_FIELD_MAPS["canvas"])
     canon = _apply_map(row, fmap)
     subjects = canon.get("subjects") or row.get("subjects") or []
@@ -546,6 +518,42 @@ def sync_students(rows: Iterable[dict[str, Any]],
             if row and m.get("source_student_id"):
                 id_map[str(m["source_student_id"])] = row[0]
     return {"upserted": len(mapped), "skipped": 0, "table": "students", "id_map": id_map}
+
+
+def deactivate_students(school_id: str, source_ids: Iterable[Any]) -> dict[str, Any]:
+    """Tombstones: flip ``is_active`` off for the given source-native ids.
+
+    Only the flag moves — names, contacts and grades are deliberately left
+    untouched, so a vanished source row can never blank a student record.
+    """
+    ids = [str(i)[:64] for i in source_ids if i is not None and str(i) != ""]
+    if not ids:
+        return {"deactivated": 0, "table": "students"}
+    with get_pg_cursor() as (cur, _conn):
+        cur.execute(
+            """
+            UPDATE students SET is_active = FALSE
+            WHERE school_id = %s AND source_student_id = ANY(%s) AND is_active = TRUE
+            """,
+            (school_id, ids),
+        )
+        return {"deactivated": cur.rowcount, "table": "students"}
+
+
+def deactivate_staff_members(school_id: str, source_ids: Iterable[Any]) -> dict[str, Any]:
+    """Staff tombstones: flip ``is_available`` off for vanished source ids."""
+    ids = [str(i)[:64] for i in source_ids if i is not None and str(i) != ""]
+    if not ids:
+        return {"deactivated": 0, "table": "staff"}
+    with get_pg_cursor() as (cur, _conn):
+        cur.execute(
+            """
+            UPDATE staff SET is_available = FALSE
+            WHERE school_id = %s AND source_staff_id = ANY(%s) AND is_available = TRUE
+            """,
+            (school_id, ids),
+        )
+        return {"deactivated": cur.rowcount, "table": "staff"}
 
 
 def sync_attendance(rows: Iterable[dict[str, Any]],
@@ -744,19 +752,18 @@ def sync_students_to_graph(students: list[dict[str, Any]],
                         MATCH (s:Student {student_id: $sid, school_id: $school_id})
                         MERGE (rf:RiskFlag {type: $risk, school_id: $school_id})
                         MERGE (s)-[:HAS_RISK]->(rf)
-                        WITH rf, $risk AS risk
-                        MATCH (std:Standard)-[:PART_OF]->(p:Policy)
-                        WHERE std.heading CONTAINS CASE risk
-                            WHEN 'VACCINATION_EXPIRED' THEN 'Campus Health'
-                            WHEN 'CHRONIC_ATTENDANCE' THEN 'Attendance'
-                            WHEN 'FEE_OVERDUE' THEN 'Finance'
-                            ELSE 'Compliance' END
-                        WITH rf, std LIMIT 1
-                        MERGE (rf)-[:ADDRESSED_BY]->(std)
                         """,
                         sid=row["student_id"], risk=risk, school_id=row["school_id"],
                     )
                     risk_edges += 1
+                    # ADDRESSED_BY is resolved from the school's pack config
+                    # (<pack>/pack.config.yml RISK_POLICY_MAP) through
+                    # policy_pack.link_risk_to_clause — the same query
+                    # build_knowledge_graph uses.  The clause heading is never
+                    # hardcoded here, so a client pack with different headings
+                    # still resolves; a school with no pack gets no edge rather
+                    # than someone else's clause.
+                    policy_pack.link_risk_to_clause(session, risk, row["school_id"])
     finally:
         driver.close()
     return {"students_upserted": len(rows), "risk_edges": risk_edges}
@@ -796,6 +803,20 @@ def handle_webhook(payload: dict[str, Any],
     if not isinstance(data, dict):
         return {"status": "ERROR", "detail": "webhook data must be an object"}
     sid = str(payload.get("school_id") or data.get("school_id") or school_id)[:64]
+
+    # Connector-owned dialects (C.6): map through the registered connector,
+    # then upsert the canonical batch through the same target path.
+    if dialect in _REGISTRY_DIALECTS:
+        batch = _connector_batch(dialect, payload if any(
+            k in payload for k in ("users", "orgs", "classes", "data")) else data, sid)
+        summary = ingest_batch(batch, sync_graph=True)
+        return {
+            "status": "OK",
+            "event": event or "inferred",
+            "routed_to": f"connector:{dialect}",
+            "school_id": sid,
+            "result": summary,
+        }
 
     kind = _EVENT_ROUTES.get(event)
     if kind is None:
@@ -844,20 +865,112 @@ def handle_webhook(payload: dict[str, Any],
     }
 
 
+def ingest_batch(batch: "Any", sync_graph: bool = True) -> dict[str, Any]:
+    """Upsert a :class:`connectors.base.CanonicalBatch` (already-canonical rows).
+
+    This is the target every connector maps into — the normalisers and the
+    upserts live here, not in the connectors.  Returns the same summary shape
+    :func:`batch_sync` produces.
+    """
+    sid = str(batch.school_id or DEFAULT_SCHOOL_ID)[:64]
+    summary: dict[str, Any] = {
+        "status": "OK",
+        "dialect": getattr(batch, "source", "") or "canonical",
+        "school_id": sid,
+        "started_at": datetime.utcnow().isoformat() + "Z",
+        "syncs": {},
+        "connector_errors": list(getattr(batch, "errors", []) or []),
+        "connector_meta": dict(getattr(batch, "meta", {}) or {}),
+    }
+    students = list(getattr(batch, "students", []) or [])
+    if students:
+        summary["syncs"]["students"] = sync_students(students, dialect="canonical", school_id=sid)
+    attendance = list(getattr(batch, "attendance", []) or [])
+    if attendance:
+        summary["syncs"]["attendance"] = sync_attendance(
+            attendance, dialect="canonical", school_id=sid)
+    fees = list(getattr(batch, "fees", []) or [])
+    if fees:
+        summary["syncs"]["fees"] = sync_fees(fees, dialect="canonical", school_id=sid)
+    staff = list(getattr(batch, "staff", []) or [])
+    if staff:
+        summary["syncs"]["staff"] = sync_staff(staff, dialect="canonical", school_id=sid)
+
+    if sync_graph and students:
+        mapped = [map_student(s, "canonical", sid) for s in students]
+        risk_map = {}
+        for m in mapped:
+            graph_key = m.get("source_student_id")
+            if not graph_key:
+                continue
+            risk_map[graph_key] = compute_risk_flags(m)
+        summary["syncs"]["graph"] = sync_students_to_graph(mapped, risk_map, school_id=sid)
+
+    # Tombstones (N.3): source ids that vanished upstream flip is_active /
+    # is_available off — never a full-row overwrite.
+    meta = getattr(batch, "meta", {}) or {}
+    vanished_students = [str(i) for i in meta.get("vanished_student_source_ids") or []]
+    if vanished_students:
+        summary["syncs"]["deactivated_students"] = deactivate_students(sid, vanished_students)
+    vanished_staff = [str(i) for i in meta.get("vanished_staff_source_ids") or []]
+    if vanished_staff:
+        summary["syncs"]["deactivated_staff"] = deactivate_staff_members(sid, vanished_staff)
+
+    summary["finished_at"] = datetime.utcnow().isoformat() + "Z"
+    return summary
+
+
+# Connector dialects routed through the registry (C.6): oneroster-csv,
+# oneroster-rest, graph_education — plus the Phase 4 natives and fallback.
+_CONNECTOR_DIALECTS = frozenset({"oneroster-csv", "oneroster-rest", "graph_education",
+                                 "gibbon", "openeducat", "canvas",
+                                 "isams", "powerschool", "csv_drop"})
+
+# Dialects whose request payloads are mapped by the registered connector
+# (not by the legacy field maps in this module).
+_REGISTRY_DIALECTS = frozenset({"oneroster-csv", "oneroster-rest", "graph_education",
+                                "isams", "powerschool", "csv_drop"})
+
+
+def _connector_batch(dialect: str, payload: dict[str, Any],
+                     sid: str) -> "Any":
+    """Run a registered connector's webhook() over the request payload."""
+    import connectors
+    connector = connectors.create(dialect, school_id=sid)
+    return connector.webhook(payload)
+
+
 def batch_sync(payload: dict[str, Any]) -> dict[str, Any]:
     """Batched sync from a SIS export / nightly job.
 
     Accepts::
         {
-          "dialect": "gibbon"|"openeducat"|"canvas"|null,
+          "dialect": "gibbon"|"openeducat"|"canvas"
+                    |"oneroster-csv"|"oneroster-rest"|"graph_education"|null,
           "school_id": "default",
           "students": [...], "attendance": [...],
           "fees": [...], "staff": [...],
+          "oneroster": {"orgs": [...], "users": [...], ...},   # bulk set
           "sync_graph": true
         }
+
+    Connector dialects (oneroster-*) are mapped by the registered connector;
+    legacy dialects map through the field maps in this module.
     """
     dialect = payload.get("dialect")
     sid = str(payload.get("school_id") or DEFAULT_SCHOOL_ID)[:64]
+
+    # --- connector-owned dialects (OneRoster + Graph Education bindings) ---
+    if dialect in _REGISTRY_DIALECTS:
+        body = dict(payload)
+        if isinstance(payload.get("oneroster"), dict):
+            # bulk-set form: {"oneroster": {"orgs": …, "users": …, …}}
+            body.update(payload["oneroster"])
+        batch = _connector_batch(dialect, body, sid)
+        summary = ingest_batch(batch, sync_graph=payload.get("sync_graph", True))
+        summary["dialect"] = dialect
+        return summary
+
     summary: dict[str, Any] = {
         "status": "OK",
         "dialect": dialect or "auto",
@@ -896,10 +1009,29 @@ def batch_sync(payload: dict[str, Any]) -> dict[str, Any]:
 # Schema health probe
 # ---------------------------------------------------------------------------
 
+def _connector_health_snapshot(school_ids: Optional[list[str]] = None) -> dict[str, Any]:
+    """Per-connector health from the registry (C.6 / N.5).  Never raises."""
+    try:
+        import connectors
+        return connectors.connector_health(school_ids=school_ids)
+    except Exception as exc:
+        return {"error": f"{type(exc).__name__}: {exc}"[:200]}
+
+
+def _known_school_ids(cur) -> list[str]:
+    """School ids with rows in MSOE — the per-school health dimension (N.5)."""
+    try:
+        cur.execute("SELECT DISTINCT school_id FROM students ORDER BY school_id")
+        return [str(r[0]) for r in cur.fetchall()]
+    except Exception:
+        return []
+
+
 def schema_status() -> dict[str, Any]:
     """Describe what the adapter can currently write to."""
     tables = {"students": False, "attendance_logs": False,
               "fee_ledgers": False, "staff": False}
+    school_ids: list[str] = []
     try:
         with get_pg_cursor() as (cur, _conn):
             cur.execute(
@@ -913,11 +1045,13 @@ def schema_status() -> dict[str, Any]:
             found = {r[0] for r in cur.fetchall()}
             for t in tables:
                 tables[t] = t in found
+            school_ids = _known_school_ids(cur)
     except Exception as exc:
         return {"status": "ERROR", "detail": str(exc)[:200], "tables": tables}
     return {
         "status": "OK" if all(tables.values()) else "DEGRADED",
         "tables": tables,
-        "dialects_supported": list(STUDENT_FIELD_MAPS.keys()),
+        "dialects_supported": sorted(set(STUDENT_FIELD_MAPS) | _CONNECTOR_DIALECTS),
         "webhook_events": list(_EVENT_ROUTES.keys()),
+        "connectors": _connector_health_snapshot(school_ids=school_ids),
     }

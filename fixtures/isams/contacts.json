@@ -1,0 +1,33 @@
+{
+  "contacts": [
+    {
+      "ContactId": "ISAMS-C01",
+      "StudentId": "ISAMS-1001",
+      "FirstName": "Fatima",
+      "Surname": "Al Mansoori",
+      "Email": "fatima@synthetic.example",
+      "Mobile": "+971500000001",
+      "IsPrimaryContact": true,
+      "Relationship": "Mother"
+    },
+    {
+      "ContactId": "ISAMS-C02",
+      "StudentId": "ISAMS-1001",
+      "FirstName": "Hassan",
+      "Surname": "Al Mansoori",
+      "Email": "hassan@synthetic.example",
+      "IsPrimaryContact": false,
+      "Relationship": "Father"
+    },
+    {
+      "ContactId": "ISAMS-C03",
+      "StudentId": "ISAMS-1002",
+      "FirstName": "Grace",
+      "Surname": "Okoro",
+      "Email": "grace@synthetic.example",
+      "Phone": "+971500000002",
+      "IsPrimaryContact": true,
+      "Relationship": "Mother"
+    }
+  ]
+}

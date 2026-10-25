@@ -1,0 +1,12 @@
+{
+  "attendance": [
+    {"StudentId": "ISAMS-1001", "Date": "2026-10-01", "Code": "P", "Session": "AM"},
+    {"StudentId": "ISAMS-1001", "Date": "2026-10-01", "Code": "L", "Session": "PM"},
+    {"StudentId": "ISAMS-1001", "Date": "2026-10-02", "Code": "N", "Session": "AM"},
+    {"StudentId": "ISAMS-1002", "Date": "2026-10-01", "Code": "M", "Session": "AM"},
+    {"StudentId": "ISAMS-1002", "Date": "2026-10-01", "Code": "P", "Session": "PM"},
+    {"StudentId": "ISAMS-1002", "Date": "2026-10-02", "Code": "P", "Session": "AM"},
+    {"StudentId": "ISAMS-1003", "Date": "2026-10-01", "Code": "A", "Session": "AM"},
+    {"StudentId": "ISAMS-1004", "Session": "AM", "Code": "P"}
+  ]
+}

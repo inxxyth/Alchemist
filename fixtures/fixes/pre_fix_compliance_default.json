@@ -1,0 +1,3007 @@
+{
+ "status": "PENDING_HUMAN_APPROVAL",
+ "generated_at": "2026-10-24T08:38:47.406894Z",
+ "summary": "Compliance audit identified 31 student(s) flagged for CHRONIC_ATTENDANCE; 17 student(s) flagged for FEE_OVERDUE; 26 student(s) flagged for VACCINATION_EXPIRED. Each case is linked to the governing regulatory clause and requires human review before any parent notification is released.",
+ "total_students": 50,
+ "violations": [
+  {
+   "student_id": 97,
+   "emirates_id": "784-1995-60096",
+   "student_name": "Ahmed Al Ameri",
+   "grade_level": 1,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 85,
+   "emirates_id": "784-1995-60084",
+   "student_name": "Hassen Al Ameri",
+   "grade_level": 1,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 85,
+   "emirates_id": "784-1995-60084",
+   "student_name": "Hassen Al Ameri",
+   "grade_level": 1,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 25,
+   "emirates_id": "784-1995-60024",
+   "student_name": "Khalid Al Ameri",
+   "grade_level": 1,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 1,
+   "emirates_id": "784-1995-60000",
+   "student_name": "Ahmed Al Ameri",
+   "grade_level": 1,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 1,
+   "emirates_id": "784-1995-60000",
+   "student_name": "Ahmed Al Ameri",
+   "grade_level": 1,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 1,
+   "emirates_id": "784-1995-60000",
+   "student_name": "Ahmed Al Ameri",
+   "grade_level": 1,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "FEE_OVERDUE",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "Staff Safeguarding Handbook",
+    "clause_number": "1",
+    "heading": "Purpose and Scope",
+    "source_file": "staff_safeguarding_handbook.md",
+    "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71",
+    "departments": [
+     "ADEK",
+     "KHDA",
+     "Student Welfare"
+    ]
+   }
+  },
+  {
+   "student_id": 109,
+   "emirates_id": "784-1995-60108",
+   "student_name": "Ibrahim Al Ameri",
+   "grade_level": 1,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 109,
+   "emirates_id": "784-1995-60108",
+   "student_name": "Ibrahim Al Ameri",
+   "grade_level": 1,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "FEE_OVERDUE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "Staff Safeguarding Handbook",
+    "clause_number": "1",
+    "heading": "Purpose and Scope",
+    "source_file": "staff_safeguarding_handbook.md",
+    "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71",
+    "departments": [
+     "ADEK",
+     "KHDA",
+     "Student Welfare"
+    ]
+   }
+  },
+  {
+   "student_id": 37,
+   "emirates_id": "784-1995-60036",
+   "student_name": "Hassen Al Ameri",
+   "grade_level": 1,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 37,
+   "emirates_id": "784-1995-60036",
+   "student_name": "Hassen Al Ameri",
+   "grade_level": 1,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "FEE_OVERDUE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "Staff Safeguarding Handbook",
+    "clause_number": "1",
+    "heading": "Purpose and Scope",
+    "source_file": "staff_safeguarding_handbook.md",
+    "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71",
+    "departments": [
+     "ADEK",
+     "KHDA",
+     "Student Welfare"
+    ]
+   }
+  },
+  {
+   "student_id": 49,
+   "emirates_id": "784-1995-60048",
+   "student_name": "Ahmed Al Ameri",
+   "grade_level": 1,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 61,
+   "emirates_id": "784-1995-60060",
+   "student_name": "Ibrahim Al Ameri",
+   "grade_level": 1,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 13,
+   "emirates_id": "784-1995-60012",
+   "student_name": "Ibrahim Al Ameri",
+   "grade_level": 1,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 73,
+   "emirates_id": "784-1995-60072",
+   "student_name": "Khalid Al Ameri",
+   "grade_level": 1,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 73,
+   "emirates_id": "784-1995-60072",
+   "student_name": "Khalid Al Ameri",
+   "grade_level": 1,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "FEE_OVERDUE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "Staff Safeguarding Handbook",
+    "clause_number": "1",
+    "heading": "Purpose and Scope",
+    "source_file": "staff_safeguarding_handbook.md",
+    "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71",
+    "departments": [
+     "ADEK",
+     "KHDA",
+     "Student Welfare"
+    ]
+   }
+  },
+  {
+   "student_id": 50,
+   "emirates_id": "784-1995-60049",
+   "student_name": "Fatima Al Mansoori",
+   "grade_level": 2,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 99,
+   "emirates_id": "784-1995-60098",
+   "student_name": "Omar Al Zaabi",
+   "grade_level": 3,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 15,
+   "emirates_id": "784-1995-60014",
+   "student_name": "Tariq Al Zaabi",
+   "grade_level": 3,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 111,
+   "emirates_id": "784-1995-60110",
+   "student_name": "Tariq Al Zaabi",
+   "grade_level": 3,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "missing",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 100,
+   "emirates_id": "784-1995-60099",
+   "student_name": "Layla Al Falasi",
+   "grade_level": 4,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "missing",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 64,
+   "emirates_id": "784-1995-60063",
+   "student_name": "Reem Al Falasi",
+   "grade_level": 4,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 89,
+   "emirates_id": "784-1995-60088",
+   "student_name": "Khalid Hussain",
+   "grade_level": 5,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "missing",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 29,
+   "emirates_id": "784-1995-60028",
+   "student_name": "Ibrahim Hussain",
+   "grade_level": 5,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 113,
+   "emirates_id": "784-1995-60112",
+   "student_name": "Ahmed Hussain",
+   "grade_level": 5,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 78,
+   "emirates_id": "784-1995-60077",
+   "student_name": "Huda Rahman",
+   "grade_level": 6,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 79,
+   "emirates_id": "784-1995-60078",
+   "student_name": "Tariq Al Maktoum",
+   "grade_level": 7,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 55,
+   "emirates_id": "784-1995-60054",
+   "student_name": "Ali Al Maktoum",
+   "grade_level": 7,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 55,
+   "emirates_id": "784-1995-60054",
+   "student_name": "Ali Al Maktoum",
+   "grade_level": 7,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "FEE_OVERDUE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "Staff Safeguarding Handbook",
+    "clause_number": "1",
+    "heading": "Purpose and Scope",
+    "source_file": "staff_safeguarding_handbook.md",
+    "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71",
+    "departments": [
+     "ADEK",
+     "KHDA",
+     "Student Welfare"
+    ]
+   }
+  },
+  {
+   "student_id": 115,
+   "emirates_id": "784-1995-60114",
+   "student_name": "Omar Al Maktoum",
+   "grade_level": 7,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 67,
+   "emirates_id": "784-1995-60066",
+   "student_name": "Omar Al Maktoum",
+   "grade_level": 7,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "missing",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 67,
+   "emirates_id": "784-1995-60066",
+   "student_name": "Omar Al Maktoum",
+   "grade_level": 7,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "missing",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 43,
+   "emirates_id": "784-1995-60042",
+   "student_name": "Yusuf Al Maktoum",
+   "grade_level": 7,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 43,
+   "emirates_id": "784-1995-60042",
+   "student_name": "Yusuf Al Maktoum",
+   "grade_level": 7,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 31,
+   "emirates_id": "784-1995-60030",
+   "student_name": "Tariq Al Maktoum",
+   "grade_level": 7,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 103,
+   "emirates_id": "784-1995-60102",
+   "student_name": "Ali Al Maktoum",
+   "grade_level": 7,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 91,
+   "emirates_id": "784-1995-60090",
+   "student_name": "Yusuf Al Maktoum",
+   "grade_level": 7,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 91,
+   "emirates_id": "784-1995-60090",
+   "student_name": "Yusuf Al Maktoum",
+   "grade_level": 7,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "FEE_OVERDUE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "Staff Safeguarding Handbook",
+    "clause_number": "1",
+    "heading": "Purpose and Scope",
+    "source_file": "staff_safeguarding_handbook.md",
+    "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71",
+    "departments": [
+     "ADEK",
+     "KHDA",
+     "Student Welfare"
+    ]
+   }
+  },
+  {
+   "student_id": 19,
+   "emirates_id": "784-1995-60018",
+   "student_name": "Omar Al Maktoum",
+   "grade_level": 7,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 19,
+   "emirates_id": "784-1995-60018",
+   "student_name": "Omar Al Maktoum",
+   "grade_level": 7,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "FEE_OVERDUE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "Staff Safeguarding Handbook",
+    "clause_number": "1",
+    "heading": "Purpose and Scope",
+    "source_file": "staff_safeguarding_handbook.md",
+    "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71",
+    "departments": [
+     "ADEK",
+     "KHDA",
+     "Student Welfare"
+    ]
+   }
+  },
+  {
+   "student_id": 7,
+   "emirates_id": "784-1995-60006",
+   "student_name": "Ali Al Maktoum",
+   "grade_level": 7,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 300,
+   "emirates_id": null,
+   "student_name": "Nigel Lara",
+   "grade_level": 7,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 0.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 44,
+   "emirates_id": "784-1995-60043",
+   "student_name": "Sara Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 44,
+   "emirates_id": "784-1995-60043",
+   "student_name": "Sara Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "FEE_OVERDUE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "Staff Safeguarding Handbook",
+    "clause_number": "1",
+    "heading": "Purpose and Scope",
+    "source_file": "staff_safeguarding_handbook.md",
+    "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71",
+    "departments": [
+     "ADEK",
+     "KHDA",
+     "Student Welfare"
+    ]
+   }
+  },
+  {
+   "student_id": 8,
+   "emirates_id": "784-1995-60007",
+   "student_name": "Noor Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 8,
+   "emirates_id": "784-1995-60007",
+   "student_name": "Noor Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 8,
+   "emirates_id": "784-1995-60007",
+   "student_name": "Noor Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "FEE_OVERDUE",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "Staff Safeguarding Handbook",
+    "clause_number": "1",
+    "heading": "Purpose and Scope",
+    "source_file": "staff_safeguarding_handbook.md",
+    "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71",
+    "departments": [
+     "ADEK",
+     "KHDA",
+     "Student Welfare"
+    ]
+   }
+  },
+  {
+   "student_id": 20,
+   "emirates_id": "784-1995-60019",
+   "student_name": "Layla Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 20,
+   "emirates_id": "784-1995-60019",
+   "student_name": "Layla Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "FEE_OVERDUE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "Staff Safeguarding Handbook",
+    "clause_number": "1",
+    "heading": "Purpose and Scope",
+    "source_file": "staff_safeguarding_handbook.md",
+    "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71",
+    "departments": [
+     "ADEK",
+     "KHDA",
+     "Student Welfare"
+    ]
+   }
+  },
+  {
+   "student_id": 32,
+   "emirates_id": "784-1995-60031",
+   "student_name": "Reem Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 32,
+   "emirates_id": "784-1995-60031",
+   "student_name": "Reem Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "FEE_OVERDUE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "Staff Safeguarding Handbook",
+    "clause_number": "1",
+    "heading": "Purpose and Scope",
+    "source_file": "staff_safeguarding_handbook.md",
+    "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71",
+    "departments": [
+     "ADEK",
+     "KHDA",
+     "Student Welfare"
+    ]
+   }
+  },
+  {
+   "student_id": 56,
+   "emirates_id": "784-1995-60055",
+   "student_name": "Noor Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "missing",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 56,
+   "emirates_id": "784-1995-60055",
+   "student_name": "Noor Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "missing",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 56,
+   "emirates_id": "784-1995-60055",
+   "student_name": "Noor Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "FEE_OVERDUE",
+   "risk_detail": {
+    "vaccination_status": "missing",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "Staff Safeguarding Handbook",
+    "clause_number": "1",
+    "heading": "Purpose and Scope",
+    "source_file": "staff_safeguarding_handbook.md",
+    "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71",
+    "departments": [
+     "ADEK",
+     "KHDA",
+     "Student Welfare"
+    ]
+   }
+  },
+  {
+   "student_id": 68,
+   "emirates_id": "784-1995-60067",
+   "student_name": "Layla Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 68,
+   "emirates_id": "784-1995-60067",
+   "student_name": "Layla Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "FEE_OVERDUE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "Staff Safeguarding Handbook",
+    "clause_number": "1",
+    "heading": "Purpose and Scope",
+    "source_file": "staff_safeguarding_handbook.md",
+    "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71",
+    "departments": [
+     "ADEK",
+     "KHDA",
+     "Student Welfare"
+    ]
+   }
+  },
+  {
+   "student_id": 80,
+   "emirates_id": "784-1995-60079",
+   "student_name": "Reem Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 80,
+   "emirates_id": "784-1995-60079",
+   "student_name": "Reem Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "FEE_OVERDUE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "Staff Safeguarding Handbook",
+    "clause_number": "1",
+    "heading": "Purpose and Scope",
+    "source_file": "staff_safeguarding_handbook.md",
+    "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71",
+    "departments": [
+     "ADEK",
+     "KHDA",
+     "Student Welfare"
+    ]
+   }
+  },
+  {
+   "student_id": 92,
+   "emirates_id": "784-1995-60091",
+   "student_name": "Sara Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 92,
+   "emirates_id": "784-1995-60091",
+   "student_name": "Sara Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 92,
+   "emirates_id": "784-1995-60091",
+   "student_name": "Sara Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "FEE_OVERDUE",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "Staff Safeguarding Handbook",
+    "clause_number": "1",
+    "heading": "Purpose and Scope",
+    "source_file": "staff_safeguarding_handbook.md",
+    "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71",
+    "departments": [
+     "ADEK",
+     "KHDA",
+     "Student Welfare"
+    ]
+   }
+  },
+  {
+   "student_id": 104,
+   "emirates_id": "784-1995-60103",
+   "student_name": "Noor Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 104,
+   "emirates_id": "784-1995-60103",
+   "student_name": "Noor Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "FEE_OVERDUE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "Staff Safeguarding Handbook",
+    "clause_number": "1",
+    "heading": "Purpose and Scope",
+    "source_file": "staff_safeguarding_handbook.md",
+    "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71",
+    "departments": [
+     "ADEK",
+     "KHDA",
+     "Student Welfare"
+    ]
+   }
+  },
+  {
+   "student_id": 116,
+   "emirates_id": "784-1995-60115",
+   "student_name": "Layla Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 116,
+   "emirates_id": "784-1995-60115",
+   "student_name": "Layla Al Qasimi",
+   "grade_level": 8,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "FEE_OVERDUE",
+   "risk_detail": {
+    "vaccination_status": "up_to_date",
+    "attendance_rate": 31.82,
+    "max_days_overdue": 90
+   },
+   "governing_clause": {
+    "policy_title": "Staff Safeguarding Handbook",
+    "clause_number": "1",
+    "heading": "Purpose and Scope",
+    "source_file": "staff_safeguarding_handbook.md",
+    "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71",
+    "departments": [
+     "ADEK",
+     "KHDA",
+     "Student Welfare"
+    ]
+   }
+  },
+  {
+   "student_id": 45,
+   "emirates_id": "784-1995-60044",
+   "student_name": "Ibrahim Khan",
+   "grade_level": 9,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "missing",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 57,
+   "emirates_id": "784-1995-60056",
+   "student_name": "Khalid Khan",
+   "grade_level": 9,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 106,
+   "emirates_id": "784-1995-60105",
+   "student_name": "Aisha Sharma",
+   "grade_level": 10,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 34,
+   "emirates_id": "784-1995-60033",
+   "student_name": "Fatima Sharma",
+   "grade_level": 10,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "missing",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 22,
+   "emirates_id": "784-1995-60021",
+   "student_name": "Mariam Sharma",
+   "grade_level": 10,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 71,
+   "emirates_id": "784-1995-60070",
+   "student_name": "Ali Al Nuaimi",
+   "grade_level": 11,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 23,
+   "emirates_id": "784-1995-60022",
+   "student_name": "Ali Al Nuaimi",
+   "grade_level": 11,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "missing",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 36,
+   "emirates_id": "784-1995-60035",
+   "student_name": "Layla Al Suwaidi",
+   "grade_level": 12,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "expired",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  },
+  {
+   "student_id": 12,
+   "emirates_id": "784-1995-60011",
+   "student_name": "Sara Al Suwaidi",
+   "grade_level": 12,
+   "school_name": "MSOE Academy Dubai",
+   "emirate": "Dubai",
+   "risk_type": "VACCINATION_EXPIRED",
+   "risk_detail": {
+    "vaccination_status": "missing",
+    "attendance_rate": 100.0,
+    "max_days_overdue": 0
+   },
+   "governing_clause": {
+    "policy_title": "KHDA / ADEK Health & Safety Protocols",
+    "clause_number": "4",
+    "heading": "Campus Health Services",
+    "source_file": "khda_adek_health_safety_protocols.md",
+    "standard_code": "MSOE-HS-2026-02\u00a74",
+    "departments": [
+     "Civil Defence",
+     "MoHAP",
+     "ADEK",
+     "KHDA",
+     "Campus Operations"
+    ]
+   }
+  }
+ ],
+ "parent_notifications": [
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00889",
+   "channel": "email",
+   "to": "parent96@synthetic.example",
+   "student_id": 97,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Ahmed Al Ameri",
+   "body": "Dear Parent of Ahmed, our records show that Ahmed Al Ameri (Grade 1, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00889/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00890",
+   "channel": "email",
+   "to": "parent84@synthetic.example",
+   "student_id": 85,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Hassen Al Ameri",
+   "body": "Dear Parent of Hassen, our records indicate that Hassen Al Ameri (Grade 1, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00890/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00891",
+   "channel": "email",
+   "to": "parent84@synthetic.example",
+   "student_id": 85,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Hassen Al Ameri",
+   "body": "Dear Parent of Hassen, our records show that Hassen Al Ameri (Grade 1, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00891/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00892",
+   "channel": "email",
+   "to": "parent24@synthetic.example",
+   "student_id": 25,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Khalid Al Ameri",
+   "body": "Dear Parent of Khalid, our records show that Khalid Al Ameri (Grade 1, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00892/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00893",
+   "channel": "email",
+   "to": "parent0@synthetic.example",
+   "student_id": 1,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Ahmed Al Ameri",
+   "body": "Dear Parent of Ahmed, our records indicate that Ahmed Al Ameri (Grade 1, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00893/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00894",
+   "channel": "email",
+   "to": "parent0@synthetic.example",
+   "student_id": 1,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Ahmed Al Ameri",
+   "body": "Dear Parent of Ahmed, our records show that Ahmed Al Ameri (Grade 1, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00894/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00895",
+   "channel": "email",
+   "to": "parent0@synthetic.example",
+   "student_id": 1,
+   "risk_type": "FEE_OVERDUE",
+   "subject": "[MSOE Compliance] Action required for Ahmed Al Ameri",
+   "body": "Dear Parent of Ahmed, our finance office shows an outstanding fee balance more than 60 days past due for Ahmed Al Ameri (Grade 1, MSOE Academy Dubai). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00895/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00896",
+   "channel": "email",
+   "to": "parent108@synthetic.example",
+   "student_id": 109,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Ibrahim Al Ameri",
+   "body": "Dear Parent of Ibrahim, our records show that Ibrahim Al Ameri (Grade 1, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00896/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00897",
+   "channel": "email",
+   "to": "parent108@synthetic.example",
+   "student_id": 109,
+   "risk_type": "FEE_OVERDUE",
+   "subject": "[MSOE Compliance] Action required for Ibrahim Al Ameri",
+   "body": "Dear Parent of Ibrahim, our finance office shows an outstanding fee balance more than 60 days past due for Ibrahim Al Ameri (Grade 1, MSOE Academy Dubai). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00897/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00898",
+   "channel": "email",
+   "to": "parent36@synthetic.example",
+   "student_id": 37,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Hassen Al Ameri",
+   "body": "Dear Parent of Hassen, our records show that Hassen Al Ameri (Grade 1, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00898/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00899",
+   "channel": "email",
+   "to": "parent36@synthetic.example",
+   "student_id": 37,
+   "risk_type": "FEE_OVERDUE",
+   "subject": "[MSOE Compliance] Action required for Hassen Al Ameri",
+   "body": "Dear Parent of Hassen, our finance office shows an outstanding fee balance more than 60 days past due for Hassen Al Ameri (Grade 1, MSOE Academy Dubai). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00899/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00900",
+   "channel": "email",
+   "to": "parent48@synthetic.example",
+   "student_id": 49,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Ahmed Al Ameri",
+   "body": "Dear Parent of Ahmed, our records show that Ahmed Al Ameri (Grade 1, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00900/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00901",
+   "channel": "email",
+   "to": "parent60@synthetic.example",
+   "student_id": 61,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Ibrahim Al Ameri",
+   "body": "Dear Parent of Ibrahim, our records show that Ibrahim Al Ameri (Grade 1, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00901/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00902",
+   "channel": "email",
+   "to": "parent12@synthetic.example",
+   "student_id": 13,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Ibrahim Al Ameri",
+   "body": "Dear Parent of Ibrahim, our records show that Ibrahim Al Ameri (Grade 1, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00902/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00903",
+   "channel": "email",
+   "to": "parent72@synthetic.example",
+   "student_id": 73,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Khalid Al Ameri",
+   "body": "Dear Parent of Khalid, our records show that Khalid Al Ameri (Grade 1, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00903/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00904",
+   "channel": "email",
+   "to": "parent72@synthetic.example",
+   "student_id": 73,
+   "risk_type": "FEE_OVERDUE",
+   "subject": "[MSOE Compliance] Action required for Khalid Al Ameri",
+   "body": "Dear Parent of Khalid, our finance office shows an outstanding fee balance more than 60 days past due for Khalid Al Ameri (Grade 1, MSOE Academy Dubai). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00904/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00905",
+   "channel": "email",
+   "to": "parent49@synthetic.example",
+   "student_id": 50,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Fatima Al Mansoori",
+   "body": "Dear Parent of Fatima, our records indicate that Fatima Al Mansoori (Grade 2, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00905/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00906",
+   "channel": "email",
+   "to": "parent98@synthetic.example",
+   "student_id": 99,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Omar Al Zaabi",
+   "body": "Dear Parent of Omar, our records indicate that Omar Al Zaabi (Grade 3, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00906/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00907",
+   "channel": "email",
+   "to": "parent14@synthetic.example",
+   "student_id": 15,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Tariq Al Zaabi",
+   "body": "Dear Parent of Tariq, our records indicate that Tariq Al Zaabi (Grade 3, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00907/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00908",
+   "channel": "email",
+   "to": "parent110@synthetic.example",
+   "student_id": 111,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Tariq Al Zaabi",
+   "body": "Dear Parent of Tariq, our records indicate that Tariq Al Zaabi (Grade 3, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00908/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00909",
+   "channel": "email",
+   "to": "parent99@synthetic.example",
+   "student_id": 100,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Layla Al Falasi",
+   "body": "Dear Parent of Layla, our records indicate that Layla Al Falasi (Grade 4, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00909/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00910",
+   "channel": "email",
+   "to": "parent63@synthetic.example",
+   "student_id": 64,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Reem Al Falasi",
+   "body": "Dear Parent of Reem, our records indicate that Reem Al Falasi (Grade 4, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00910/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00911",
+   "channel": "email",
+   "to": "parent88@synthetic.example",
+   "student_id": 89,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Khalid Hussain",
+   "body": "Dear Parent of Khalid, our records indicate that Khalid Hussain (Grade 5, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00911/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00912",
+   "channel": "email",
+   "to": "parent28@synthetic.example",
+   "student_id": 29,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Ibrahim Hussain",
+   "body": "Dear Parent of Ibrahim, our records indicate that Ibrahim Hussain (Grade 5, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00912/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00913",
+   "channel": "email",
+   "to": "parent112@synthetic.example",
+   "student_id": 113,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Ahmed Hussain",
+   "body": "Dear Parent of Ahmed, our records indicate that Ahmed Hussain (Grade 5, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00913/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00914",
+   "channel": "email",
+   "to": "parent77@synthetic.example",
+   "student_id": 78,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Huda Rahman",
+   "body": "Dear Parent of Huda, our records indicate that Huda Rahman (Grade 6, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00914/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00915",
+   "channel": "email",
+   "to": "parent78@synthetic.example",
+   "student_id": 79,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Tariq Al Maktoum",
+   "body": "Dear Parent of Tariq, our records show that Tariq Al Maktoum (Grade 7, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00915/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00916",
+   "channel": "email",
+   "to": "parent54@synthetic.example",
+   "student_id": 55,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Ali Al Maktoum",
+   "body": "Dear Parent of Ali, our records show that Ali Al Maktoum (Grade 7, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00916/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00917",
+   "channel": "email",
+   "to": "parent54@synthetic.example",
+   "student_id": 55,
+   "risk_type": "FEE_OVERDUE",
+   "subject": "[MSOE Compliance] Action required for Ali Al Maktoum",
+   "body": "Dear Parent of Ali, our finance office shows an outstanding fee balance more than 60 days past due for Ali Al Maktoum (Grade 7, MSOE Academy Dubai). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00917/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00918",
+   "channel": "email",
+   "to": "parent114@synthetic.example",
+   "student_id": 115,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Omar Al Maktoum",
+   "body": "Dear Parent of Omar, our records show that Omar Al Maktoum (Grade 7, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00918/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00919",
+   "channel": "email",
+   "to": "parent66@synthetic.example",
+   "student_id": 67,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Omar Al Maktoum",
+   "body": "Dear Parent of Omar, our records indicate that Omar Al Maktoum (Grade 7, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00919/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00920",
+   "channel": "email",
+   "to": "parent66@synthetic.example",
+   "student_id": 67,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Omar Al Maktoum",
+   "body": "Dear Parent of Omar, our records show that Omar Al Maktoum (Grade 7, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00920/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00921",
+   "channel": "email",
+   "to": "parent42@synthetic.example",
+   "student_id": 43,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Yusuf Al Maktoum",
+   "body": "Dear Parent of Yusuf, our records indicate that Yusuf Al Maktoum (Grade 7, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00921/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00922",
+   "channel": "email",
+   "to": "parent42@synthetic.example",
+   "student_id": 43,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Yusuf Al Maktoum",
+   "body": "Dear Parent of Yusuf, our records show that Yusuf Al Maktoum (Grade 7, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00922/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00923",
+   "channel": "email",
+   "to": "parent30@synthetic.example",
+   "student_id": 31,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Tariq Al Maktoum",
+   "body": "Dear Parent of Tariq, our records show that Tariq Al Maktoum (Grade 7, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00923/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00924",
+   "channel": "email",
+   "to": "parent102@synthetic.example",
+   "student_id": 103,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Ali Al Maktoum",
+   "body": "Dear Parent of Ali, our records show that Ali Al Maktoum (Grade 7, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00924/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00925",
+   "channel": "email",
+   "to": "parent90@synthetic.example",
+   "student_id": 91,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Yusuf Al Maktoum",
+   "body": "Dear Parent of Yusuf, our records show that Yusuf Al Maktoum (Grade 7, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00925/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00926",
+   "channel": "email",
+   "to": "parent90@synthetic.example",
+   "student_id": 91,
+   "risk_type": "FEE_OVERDUE",
+   "subject": "[MSOE Compliance] Action required for Yusuf Al Maktoum",
+   "body": "Dear Parent of Yusuf, our finance office shows an outstanding fee balance more than 60 days past due for Yusuf Al Maktoum (Grade 7, MSOE Academy Dubai). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00926/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00927",
+   "channel": "email",
+   "to": "parent18@synthetic.example",
+   "student_id": 19,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Omar Al Maktoum",
+   "body": "Dear Parent of Omar, our records show that Omar Al Maktoum (Grade 7, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00927/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00928",
+   "channel": "email",
+   "to": "parent18@synthetic.example",
+   "student_id": 19,
+   "risk_type": "FEE_OVERDUE",
+   "subject": "[MSOE Compliance] Action required for Omar Al Maktoum",
+   "body": "Dear Parent of Omar, our finance office shows an outstanding fee balance more than 60 days past due for Omar Al Maktoum (Grade 7, MSOE Academy Dubai). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00928/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00929",
+   "channel": "email",
+   "to": "parent6@synthetic.example",
+   "student_id": 7,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Ali Al Maktoum",
+   "body": "Dear Parent of Ali, our records show that Ali Al Maktoum (Grade 7, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00929/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00930",
+   "channel": "email",
+   "to": "897@gibbon.localhost",
+   "student_id": 300,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Nigel Lara",
+   "body": "Dear Parent/Guardian, our records show that Nigel Lara (Grade 7, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00930/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00931",
+   "channel": "email",
+   "to": "parent43@synthetic.example",
+   "student_id": 44,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Sara Al Qasimi",
+   "body": "Dear Parent of Sara, our records show that Sara Al Qasimi (Grade 8, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00931/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00932",
+   "channel": "email",
+   "to": "parent43@synthetic.example",
+   "student_id": 44,
+   "risk_type": "FEE_OVERDUE",
+   "subject": "[MSOE Compliance] Action required for Sara Al Qasimi",
+   "body": "Dear Parent of Sara, our finance office shows an outstanding fee balance more than 60 days past due for Sara Al Qasimi (Grade 8, MSOE Academy Dubai). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00932/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00933",
+   "channel": "email",
+   "to": "parent7@synthetic.example",
+   "student_id": 8,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Noor Al Qasimi",
+   "body": "Dear Parent of Noor, our records indicate that Noor Al Qasimi (Grade 8, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00933/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00934",
+   "channel": "email",
+   "to": "parent7@synthetic.example",
+   "student_id": 8,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Noor Al Qasimi",
+   "body": "Dear Parent of Noor, our records show that Noor Al Qasimi (Grade 8, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00934/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00935",
+   "channel": "email",
+   "to": "parent7@synthetic.example",
+   "student_id": 8,
+   "risk_type": "FEE_OVERDUE",
+   "subject": "[MSOE Compliance] Action required for Noor Al Qasimi",
+   "body": "Dear Parent of Noor, our finance office shows an outstanding fee balance more than 60 days past due for Noor Al Qasimi (Grade 8, MSOE Academy Dubai). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00935/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00936",
+   "channel": "email",
+   "to": "parent19@synthetic.example",
+   "student_id": 20,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Layla Al Qasimi",
+   "body": "Dear Parent of Layla, our records show that Layla Al Qasimi (Grade 8, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00936/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00937",
+   "channel": "email",
+   "to": "parent19@synthetic.example",
+   "student_id": 20,
+   "risk_type": "FEE_OVERDUE",
+   "subject": "[MSOE Compliance] Action required for Layla Al Qasimi",
+   "body": "Dear Parent of Layla, our finance office shows an outstanding fee balance more than 60 days past due for Layla Al Qasimi (Grade 8, MSOE Academy Dubai). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00937/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00938",
+   "channel": "email",
+   "to": "parent31@synthetic.example",
+   "student_id": 32,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Reem Al Qasimi",
+   "body": "Dear Parent of Reem, our records show that Reem Al Qasimi (Grade 8, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00938/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00939",
+   "channel": "email",
+   "to": "parent31@synthetic.example",
+   "student_id": 32,
+   "risk_type": "FEE_OVERDUE",
+   "subject": "[MSOE Compliance] Action required for Reem Al Qasimi",
+   "body": "Dear Parent of Reem, our finance office shows an outstanding fee balance more than 60 days past due for Reem Al Qasimi (Grade 8, MSOE Academy Dubai). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00939/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00940",
+   "channel": "email",
+   "to": "parent55@synthetic.example",
+   "student_id": 56,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Noor Al Qasimi",
+   "body": "Dear Parent of Noor, our records indicate that Noor Al Qasimi (Grade 8, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00940/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00941",
+   "channel": "email",
+   "to": "parent55@synthetic.example",
+   "student_id": 56,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Noor Al Qasimi",
+   "body": "Dear Parent of Noor, our records show that Noor Al Qasimi (Grade 8, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00941/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00942",
+   "channel": "email",
+   "to": "parent55@synthetic.example",
+   "student_id": 56,
+   "risk_type": "FEE_OVERDUE",
+   "subject": "[MSOE Compliance] Action required for Noor Al Qasimi",
+   "body": "Dear Parent of Noor, our finance office shows an outstanding fee balance more than 60 days past due for Noor Al Qasimi (Grade 8, MSOE Academy Dubai). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00942/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00943",
+   "channel": "email",
+   "to": "parent67@synthetic.example",
+   "student_id": 68,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Layla Al Qasimi",
+   "body": "Dear Parent of Layla, our records show that Layla Al Qasimi (Grade 8, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00943/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00944",
+   "channel": "email",
+   "to": "parent67@synthetic.example",
+   "student_id": 68,
+   "risk_type": "FEE_OVERDUE",
+   "subject": "[MSOE Compliance] Action required for Layla Al Qasimi",
+   "body": "Dear Parent of Layla, our finance office shows an outstanding fee balance more than 60 days past due for Layla Al Qasimi (Grade 8, MSOE Academy Dubai). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00944/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00945",
+   "channel": "email",
+   "to": "parent79@synthetic.example",
+   "student_id": 80,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Reem Al Qasimi",
+   "body": "Dear Parent of Reem, our records show that Reem Al Qasimi (Grade 8, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00945/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00946",
+   "channel": "email",
+   "to": "parent79@synthetic.example",
+   "student_id": 80,
+   "risk_type": "FEE_OVERDUE",
+   "subject": "[MSOE Compliance] Action required for Reem Al Qasimi",
+   "body": "Dear Parent of Reem, our finance office shows an outstanding fee balance more than 60 days past due for Reem Al Qasimi (Grade 8, MSOE Academy Dubai). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00946/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00947",
+   "channel": "email",
+   "to": "parent91@synthetic.example",
+   "student_id": 92,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Sara Al Qasimi",
+   "body": "Dear Parent of Sara, our records indicate that Sara Al Qasimi (Grade 8, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00947/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00948",
+   "channel": "email",
+   "to": "parent91@synthetic.example",
+   "student_id": 92,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Sara Al Qasimi",
+   "body": "Dear Parent of Sara, our records show that Sara Al Qasimi (Grade 8, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00948/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00949",
+   "channel": "email",
+   "to": "parent91@synthetic.example",
+   "student_id": 92,
+   "risk_type": "FEE_OVERDUE",
+   "subject": "[MSOE Compliance] Action required for Sara Al Qasimi",
+   "body": "Dear Parent of Sara, our finance office shows an outstanding fee balance more than 60 days past due for Sara Al Qasimi (Grade 8, MSOE Academy Dubai). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00949/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00950",
+   "channel": "email",
+   "to": "parent103@synthetic.example",
+   "student_id": 104,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Noor Al Qasimi",
+   "body": "Dear Parent of Noor, our records show that Noor Al Qasimi (Grade 8, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00950/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00951",
+   "channel": "email",
+   "to": "parent103@synthetic.example",
+   "student_id": 104,
+   "risk_type": "FEE_OVERDUE",
+   "subject": "[MSOE Compliance] Action required for Noor Al Qasimi",
+   "body": "Dear Parent of Noor, our finance office shows an outstanding fee balance more than 60 days past due for Noor Al Qasimi (Grade 8, MSOE Academy Dubai). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00951/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00952",
+   "channel": "email",
+   "to": "parent115@synthetic.example",
+   "student_id": 116,
+   "risk_type": "CHRONIC_ATTENDANCE",
+   "subject": "[MSOE Compliance] Action required for Layla Al Qasimi",
+   "body": "Dear Parent of Layla, our records show that Layla Al Qasimi (Grade 8, MSOE Academy Dubai) has an attendance rate below the 85% threshold. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), sustained attendance is monitored as a student-wellbeing indicator. We invite you to meet with the attendance officer this week.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00952/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00953",
+   "channel": "email",
+   "to": "parent115@synthetic.example",
+   "student_id": 116,
+   "risk_type": "FEE_OVERDUE",
+   "subject": "[MSOE Compliance] Action required for Layla Al Qasimi",
+   "body": "Dear Parent of Layla, our finance office shows an outstanding fee balance more than 60 days past due for Layla Al Qasimi (Grade 8, MSOE Academy Dubai). Under Staff Safeguarding Handbook, clause 1 (Purpose and Scope), timely fee settlement supports continued enrolment. Please contact the bursar to arrange payment.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00953/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00954",
+   "channel": "email",
+   "to": "parent44@synthetic.example",
+   "student_id": 45,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Ibrahim Khan",
+   "body": "Dear Parent of Ibrahim, our records indicate that Ibrahim Khan (Grade 9, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00954/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00955",
+   "channel": "email",
+   "to": "parent56@synthetic.example",
+   "student_id": 57,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Khalid Khan",
+   "body": "Dear Parent of Khalid, our records indicate that Khalid Khan (Grade 9, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00955/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00956",
+   "channel": "email",
+   "to": "parent105@synthetic.example",
+   "student_id": 106,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Aisha Sharma",
+   "body": "Dear Parent of Aisha, our records indicate that Aisha Sharma (Grade 10, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00956/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00957",
+   "channel": "email",
+   "to": "parent33@synthetic.example",
+   "student_id": 34,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Fatima Sharma",
+   "body": "Dear Parent of Fatima, our records indicate that Fatima Sharma (Grade 10, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00957/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00958",
+   "channel": "email",
+   "to": "parent21@synthetic.example",
+   "student_id": 22,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Mariam Sharma",
+   "body": "Dear Parent of Mariam, our records indicate that Mariam Sharma (Grade 10, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00958/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00959",
+   "channel": "email",
+   "to": "parent70@synthetic.example",
+   "student_id": 71,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Ali Al Nuaimi",
+   "body": "Dear Parent of Ali, our records indicate that Ali Al Nuaimi (Grade 11, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00959/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00960",
+   "channel": "email",
+   "to": "parent22@synthetic.example",
+   "student_id": 23,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Ali Al Nuaimi",
+   "body": "Dear Parent of Ali, our records indicate that Ali Al Nuaimi (Grade 11, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00960/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00961",
+   "channel": "email",
+   "to": "parent35@synthetic.example",
+   "student_id": 36,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Layla Al Suwaidi",
+   "body": "Dear Parent of Layla, our records indicate that Layla Al Suwaidi (Grade 12, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00961/execute"
+  },
+  {
+   "status": "PENDING_HUMAN_APPROVAL",
+   "action_id": "ACT-00962",
+   "channel": "email",
+   "to": "parent11@synthetic.example",
+   "student_id": 12,
+   "risk_type": "VACCINATION_EXPIRED",
+   "subject": "[MSOE Compliance] Action required for Sara Al Suwaidi",
+   "body": "Dear Parent of Sara, our records indicate that Sara Al Suwaidi (Grade 12, MSOE Academy Dubai) has an expired or incomplete vaccination record. Under KHDA / ADEK Health & Safety Protocols, clause 4 (Campus Health Services), students must maintain up-to-date immunisation documentation. Please submit the updated record to the school clinic within 14 days.",
+   "requires_human_approval": true,
+   "approval_url": "/api/v1/approvals/ACT-00962/execute"
+  }
+ ],
+ "policy_citations": [
+  {
+   "source_file": "khda_adek_health_safety_protocols.md",
+   "clause_number": "4",
+   "heading": "Campus Health Services",
+   "policy_title": "KHDA / ADEK Health & Safety Protocols",
+   "policy_reference": "MSOE-HS-2026-02",
+   "standard_code": "MSOE-HS-2026-02\u00a74"
+  },
+  {
+   "source_file": "staff_safeguarding_handbook.md",
+   "clause_number": "1",
+   "heading": "Purpose and Scope",
+   "policy_title": "Staff Safeguarding Handbook",
+   "policy_reference": "MSOE-SAFEGUARD-2026-01",
+   "standard_code": "MSOE-SAFEGUARD-2026-01\u00a71"
+  }
+ ],
+ "risk_coverage": {
+  "students_examined": 50,
+  "risk_cases_flagged": 74,
+  "cases_with_governing_clause": 74,
+  "distinct_policies_cited": 2,
+  "by_risk_type": {
+   "VACCINATION_EXPIRED": 26,
+   "CHRONIC_ATTENDANCE": 31,
+   "FEE_OVERDUE": 17
+  },
+  "guardrail": {
+   "actions_staged_pending_human_approval": 74,
+   "side_effects_executed": 0,
+   "note": "Nothing is sent until an officer approves each action."
+  },
+  "scope_note": "Coverage counts only. Not a claim of money saved or risk financially quantified."
+ },
+ "roi": {
+  "service": "audit.compliance",
+  "hours_returned": 6.8,
+  "estimated_value": 690.0,
+  "currency": "AED",
+  "units": [
+   {
+    "unit": "parent_notification_drafted",
+    "qty": 74.0,
+    "minutes_each": 4.0,
+    "role": "admin",
+    "minutes_total": 296.0,
+    "rate_per_hour": 100.0,
+    "basis": "Draft, policy-check and review one parent compliance notification by hand."
+   },
+   {
+    "unit": "policy_clause_matched",
+    "qty": 2.0,
+    "minutes_each": 6.0,
+    "role": "compliance",
+    "minutes_total": 12.0,
+    "rate_per_hour": 150.0,
+    "basis": "Locate and verify the governing policy clause for a risk case across the school's policy pack."
+   },
+   {
+    "unit": "student_risk_reviewed",
+    "qty": 50.0,
+    "minutes_each": 2.0,
+    "role": "admin",
+    "minutes_total": 100.0,
+    "rate_per_hour": 100.0,
+    "basis": "Triage one student's attendance, fee and vaccination records against the risk thresholds."
+   }
+  ],
+  "method": "hours_returned = sum(qty x minutes_each)/60; estimated_value = hours_returned x role rate. See /api/v1/roi/report for the full assumption set."
+ }
+}

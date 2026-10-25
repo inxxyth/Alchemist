@@ -1,0 +1,3 @@
+source_staff_id,full_name,email,role,subjects,is_available,max_periods,assigned
+CSV-S01,Test Staffone,staff1@synthetic.example,teacher,"Maths, Science",true,20,15
+CSV-S02,Test Stafftwo,staff2@synthetic.example,teacher,English,false,18,10

@@ -1,0 +1,23 @@
+{
+  "behaviour": [
+    {
+      "StudentId": "ISAMS-1002",
+      "Date": "2026-09-12",
+      "Type": "Low-level disruption",
+      "Points": 1,
+      "Comment": "SYNTHETIC incident — fixture data only"
+    },
+    {
+      "StudentId": "ISAMS-1002",
+      "Date": "2026-09-20",
+      "Type": "Homework",
+      "Points": 1
+    },
+    {
+      "StudentId": "ISAMS-1004",
+      "Date": "2026-09-21",
+      "Type": "Positive",
+      "Points": -1
+    }
+  ]
+}

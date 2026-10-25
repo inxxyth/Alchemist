@@ -1,0 +1,31 @@
+# Policy-pack configuration — SYNTHETIC fixture pack.
+#
+# Fixture for test_policy_pack.py (Phase 5, P.6).  Deliberately uses clause
+# headings that are NOT the MSOE ones ("Campus Health", "Purpose") so the
+# 4-hop path proves it resolves through this map, not through a hardcoded
+# heading string.  See policy_vault/FORMAT.md for the schema.
+
+schema_version: 1
+pack_id: "meridian-british-school-fixture"
+
+DEPARTMENTS:
+  - {name: "Pastoral", full_name: "Pastoral and Pupil Welfare Office", jurisdiction: "SYNTHETIC fixture"}
+  - {name: "Bursary", full_name: "Bursary and Fee Collection Office", jurisdiction: "SYNTHETIC fixture"}
+  - {name: "UK DfE", full_name: "Synthetic Department for Education (fixture)", jurisdiction: "SYNTHETIC fixture"}
+
+POLICY_DEPT_RULES:
+  - {match: "Welfare", dept: "Pastoral"}
+  - {match: "Welfare", dept: "UK DfE"}
+  - {match: "Attendance", dept: "Pastoral"}
+  - {match: "Attendance", dept: "UK DfE"}
+
+RISK_POLICY_MAP:
+  VACCINATION_EXPIRED:
+    policy_file: "pupil_welfare_and_attendance_code"
+    clause_keyword: "Pupil Health Centre"
+  CHRONIC_ATTENDANCE:
+    policy_file: "pupil_welfare_and_attendance_code"
+    clause_keyword: "Attendance and Punctuality"
+  FEE_OVERDUE:
+    policy_file: "pupil_welfare_and_attendance_code"
+    clause_keyword: "Bursary and Fee Collection"

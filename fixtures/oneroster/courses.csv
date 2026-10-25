@@ -1,0 +1,4 @@
+sourcedId,status,schoolYearSourcedId,title,courseCode,grades,subjects,orgSourcedIds,subjectCodes
+crs-01,active,ay-2025-26,SYNTHETIC Mathematics,course-math,09-12,Mathematics,org-camp-a,math
+crs-02,active,ay-2025-26,SYNTHETIC Science,course-sci,K-08,Science,org-camp-a,sci
+crs-03,active,ay-2025-26,SYNTHETIC Arabic,course-ara,10,Arabic,org-camp-b,ara

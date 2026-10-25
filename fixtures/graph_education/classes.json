@@ -1,0 +1,36 @@
+{
+  "value": [
+    {
+      "@odata.type": "#microsoft.graph.educationClass",
+      "id": "graph-class-01",
+      "displayName": "SYNTHETIC Maths 10A",
+      "classCode": "TEST-MATH-10A",
+      "externalName": "Maths",
+      "externalId": "SIS-CLASS-01",
+      "externalSource": "sis",
+      "grade": "10",
+      "schoolId": "graph-school-001",
+      "course": {
+        "displayName": "SYNTHETIC Mathematics",
+        "subject": "Mathematics",
+        "courseNumber": "MATH10"
+      }
+    },
+    {
+      "@odata.type": "#microsoft.graph.educationClass",
+      "id": "graph-class-02",
+      "displayName": "SYNTHETIC Science 7B",
+      "classCode": "TEST-SCI-7B",
+      "externalName": "Science",
+      "externalId": "SIS-CLASS-02",
+      "externalSource": "sis",
+      "grade": "07",
+      "schoolId": "graph-school-001",
+      "course": {
+        "displayName": "SYNTHETIC Science",
+        "subject": "Science",
+        "courseNumber": "SCI07"
+      }
+    }
+  ]
+}

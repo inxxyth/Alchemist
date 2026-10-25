@@ -1,0 +1,36 @@
+{
+  "fees": [
+    {
+      "studentId": "PS-501",
+      "feeId": "FEE-2026-01",
+      "term": "Trimester 1",
+      "amountDue": 1500.0,
+      "amountPaid": 1500.0,
+      "dueDate": "2026-09-01",
+      "status": "Paid"
+    },
+    {
+      "studentId": "PS-502",
+      "feeId": "FEE-2026-02",
+      "term": "Trimester 1",
+      "amount": 2000.0,
+      "paid": 250.0,
+      "dueDate": "2026-09-01",
+      "overdueDays": 5
+    },
+    {
+      "studentId": "PS-502",
+      "feeId": "FEE-2026-02",
+      "amount": 2000.0,
+      "paid": 250.0
+    },
+    {
+      "studentId": "PS-503",
+      "feeId": "FEE-2026-03",
+      "term": "Trimester 1",
+      "amountDue": 500.0,
+      "amountPaid": 0.0,
+      "dueDate": "2026-10-01"
+    }
+  ]
+}

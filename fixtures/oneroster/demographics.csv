@@ -1,0 +1,5 @@
+sourcedId,status,birthDate,sex,americanIndianOrAlaskaNative,asian,blackOrAfrican,white,hispanicOrLatino
+usr-1001,active,2013-04-12,M,false,false,false,true,false
+usr-1002,active,2015-11-02,F,false,true,false,false,false
+usr-1003,active,2012-01-30,U,false,false,false,false,false
+usr-1004,active,2012-06-15,F,false,false,false,true,false

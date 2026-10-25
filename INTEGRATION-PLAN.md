@@ -64,6 +64,70 @@ GEMS and Taaleem both run heavy British/IB/American estates — that is exactly 
 
 ---
 
+### 3.1 Microsoft Graph Education — permissions (least privilege)
+
+The Graph Education connector is a **read-only consumer**. We read rosters and
+stage actions for human approval; we never write back to the school's
+directory. That constraint is architectural, not aspirational:
+`connectors/graph_education/` has a single Graph call site and it only ever
+sends GET requests (`test_graph_education.py` asserts this on every recorded
+request).
+
+**Exact Graph application permissions requested:**
+
+| Permission | Type | Used for | Required |
+|---|---|---|---|
+| `EducationRoster.Read.All` | Application (app-only) | `/education/schools`, `/education/users`, `/education/classes`, `/education/classes/{id}/members` — rosters | **Yes** |
+| `EducationAssignments.Read.All` | Application (app-only) | `/education/classes/{id}/assignments` — optional enrichment for the curriculum service only | No — request only if the engagement needs it |
+
+**No write permissions are requested** — not `EducationRoster.ReadWrite.All`,
+not `EducationAssignments.ReadWrite.All`, not directory write scopes. A group
+IT lead should be able to grant this and see, in the admin consent screen,
+exactly two read scopes. If a vendor asks for write access to your directory
+to "sync a roster", that is a red flag.
+
+Auth is OAuth2 client-credentials (app-only) against
+`https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token` with scope
+`https://graph.microsoft.com/.default`. Secrets live in environment variables
+(`MS_GRAPH_TENANT_ID`, `MS_GRAPH_CLIENT_ID`, `MS_GRAPH_CLIENT_SECRET`,
+`MS_GRAPH_SCHOOL_ID_MAP`) — never in a manifest, never in source.
+
+Assignment/submission objects are **out of scope for the compliance engine**
+and are not persisted (they would be fetched only if a future curriculum
+consumer asks for them).
+
+### 3.2 The SDS / Entra identity note (principal-facing)
+
+**For a non-technical principal or group IT lead:**
+
+> Microsoft School Data Sync (SDS) is a free Microsoft service that already
+> keeps your school's class lists up to date inside your Microsoft 365
+> environment. If your school already runs SDS, the authoritative list of
+> students, teachers and classes is already there — securely, and under your
+> IT's control. Alchemist's integration simply *reads* that list with a
+> permission that only allows reading. We never change it, and we never ask
+> for a login to your student information system. That is why this route
+> works even when a school's IT policy says "no new vendor touches our SIS":
+> nothing new touches it. The same data your teachers already see in Teams
+> class rosters is what feeds the compliance engine — nothing more.
+
+**The engineering version:** where the school already runs SDS, the roster is
+already in Entra ID and this connector never touches the SIS. SDS ingests
+OneRoster/CSV from any SIS into Entra ID and exposes roster to third-party
+apps via a no-cost API — we consume *that*, not the SIS. For a group
+considering many campuses with different SIS vendors, this is the
+single integration surface that works everywhere the group already has
+Microsoft 365.
+
+### 3.3 Future work (noted, not built)
+
+- **Google Classroom API** — the Google-side equivalent of the Graph
+  Education route. Same connector shape (roster read-only, canonical five).
+  Deliberately **not** built in Phase 3; revisit when a client estate is
+  Google-first.
+
+---
+
 ## 4. UAE regulatory and residency posture
 
 Source: UAE PDPL (Federal Decree-Law No. 45 of 2021) — see [DLA Piper Data Protection Laws of the World](https://www.dlapiperdataprotection.com/index.html?t=law&c=AE).

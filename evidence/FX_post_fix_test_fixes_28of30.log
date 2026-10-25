@@ -1,0 +1,47 @@
+========================================================================
+MSOE FX.1-FX.6 FUNCTIONAL-FIX SUITE (SYNTHETIC fixtures)
+========================================================================
+
+--- FX.1 teacher match (exact | 409 ambiguous | wildcard-safe) ---
+[PASS] FX.1 exact match on normalised name ('  John   Smith  ' -> John Smith) HTTP 200 staged_teacher='John Smith'
+[PASS] FX.1 'Johnny' with John Smith + Johnny Cash on the roll -> 409 HTTP 409 candidates_in_body=True
+[PASS] FX.1 name with literal % is not a wildcard (404, not the whole roll) HTTP 404
+
+--- FX.2 subject vocabulary (alias + group, honest empty) ---
+[PASS] FX.2 'Maths' finds a teacher holding ['Mathematics']           HTTP 200 candidates=['John Smith', 'Mo Maths']
+[PASS] FX.2 match_rule reported per candidate ('alias' for Maths->Mathematics) rule='alias'
+[PASS] FX.2 vice versa: 'Mathematics' finds a teacher holding ['Maths'] HTTP 200 candidates=['John Smith', 'Mo Maths']
+[PASS] FX.2 'Art' vs ['Mathematics'] roll -> honest empty, no over-merge HTTP 200 candidates=[]
+[PASS] FX.2 'Art' need surfaces only Art holders (never Mathematics teachers) art_need_candidates=['Test Artsy']
+
+--- FX.3 cost-aware ranking ladder (ordering only, no money talk) ---
+[PASS] FX.3 agency with huge capacity LOSES to internal with less capacity HTTP 200 recommended='Internal Ian' agency_cap=20 internal_cap=3
+[PASS] FX.3 ordering deterministic across runs                        order1=[152, 151] order2=[152, 151]
+[PASS] FX.3 per-candidate cover_class + day_rate exposed              rec_cover_class='internal' rec_day_rate=None
+[PASS] FX.3 recommendation_reason present (cover/capacity/rate phrasing) reason='internal cover, capacity 3, no day rate'
+[PASS] FX.3 no money language in the ranking fields (ordering only)   banned_found=[]
+[PASS] FX.3 students table untouched by dispatch                      before=546 after=546
+
+--- FX.4 zero-attendance blind spot (DATA_GAP, internal only) ---
+[PASS] FX.4 zero-attendance student surfaces as DATA_GAP (not invisible) HTTP 200 gap_names=['SYNTHETIC Zero AttendanceGap']
+[PASS] FX.4 attendance_rate is None (no data), not 100.0, and record count returned detail={'vaccination_status': 'up_to_date', 'attendance_rate': None, 'attendance_records': 0, 'max_days_overdue': 0}
+[PASS] FX.4 NO SEND_PARENT_NOTIFICATION staged for a data-gap student, ever gap_notifications=0 total_notes=1
+[PASS] FX.4 student with real attendance rows behaves exactly as before (CHRONIC_ATTENDANCE at 20%, same detail shape) real=[('CHRONIC_ATTENDANCE', {'vaccination_status': 'up_to_date', 'attendance_rate': 20.0, 'max_days_overdue': 0})]
+[PASS] FX.4 real-risk student still gets a parent notification staged real_notes=1
+[PASS] FX.4 DATA_GAP cases ordered AFTER real risk cases              last_real_idx=0 first_gap_idx=1
+[FAIL] FX.4 seeded cohort: same findings in same order as pre-fix snapshot pre_n=74 post_n=74 equal=False
+[FAIL] FX.4 seeded cohort: pre-fix risk_detail values unchanged       85:vaccination_status 'expired' -> 'up_to_date'
+[PASS] FX.4 seeded cohort: parent notification set unchanged          pre_n=74 post_n=74
+
+--- FX.5 aware UTC timestamps (+00:00) ---
+[PASS] FX.5 compliance generated_at is aware UTC                      generated_at='2026-10-24T09:15:57.604357+00:00'
+[PASS] FX.5 roi report generated_at is aware UTC                      roi.generated_at='2026-10-24T09:15:57.617746+00:00'
+
+--- FX.6 one clock for both retention cutoffs ---
+[PASS] FX.6 both cutoffs derive from ONE injected now (date + timestamptz) date_cutoff=2026-09-24 ts_cutoff=2026-09-24 13:45:12+00:00
+[PASS] FX.6 date cutoff is the UTC date of the timestamp cutoff       2026-09-24 vs 2026-09-24
+[PASS] FX.6 dry-run exits 0 and deletes nothing                       rc=0 att 5306->5306 audit 21->21
+[PASS] FX.6 --apply --days 1 refused (exit 2, min 30d guard)          rc=2
+[PASS] suite left the student count unchanged (cleanup complete)      session_start=543 after=543
+========================================================================
+SUMMARY: 28/30 passed

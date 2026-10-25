@@ -1,0 +1,3 @@
+source_student_id,attendance_date,status
+CSV-001,2026-10-07,present
+CSV-002,,absent

@@ -26,7 +26,7 @@ import re
 import time
 import traceback
 from concurrent.futures import ThreadPoolExecutor, wait
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from typing import Any, Optional
 
 import psycopg2
@@ -37,7 +37,9 @@ from neo4j import GraphDatabase
 from pydantic import BaseModel, Field
 
 from llm_client import DeterministicLLM, get_llm
+import audit_log
 import roi_model
+from residency_check import check_region as residency_check_region
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -128,6 +130,14 @@ async def require_api_key(request: Request, call_next):
 
     provided = request.headers.get("x-api-key")
     if not provided:
+        audit_log.record(
+            audit_log.EVENT_AUTH,
+            action=f"{request.method} {path}",
+            outcome="missing_api_key",
+            actor="anonymous",
+            school_id=audit_log.UNAUTHENTICATED,
+            detail={"path": path, "method": request.method},
+        )
         return JSONResponse(
             status_code=401,
             content={"status": "ERROR", "detail": "Missing X-API-Key header", "path": path},
@@ -135,6 +145,15 @@ async def require_api_key(request: Request, call_next):
 
     school = _resolve_school_from_key(provided)
     if school is None:
+        # Record the rejection with a fingerprint — never the key itself.
+        audit_log.record(
+            audit_log.EVENT_AUTH,
+            action=f"{request.method} {path}",
+            outcome="invalid_api_key",
+            actor=audit_log.key_fingerprint(provided),
+            school_id=audit_log.UNAUTHENTICATED,
+            detail={"path": path, "method": request.method},
+        )
         return JSONResponse(
             status_code=401,
             content={"status": "ERROR", "detail": "Invalid API key", "path": path},
@@ -144,6 +163,14 @@ async def require_api_key(request: Request, call_next):
     if path == "/api/v1/sis/webhook" and request.method == "POST":
         signature = request.headers.get("x-msoe-signature")
         if not signature:
+            audit_log.record(
+                audit_log.EVENT_AUTH,
+                action=f"{request.method} {path}",
+                outcome="missing_webhook_signature",
+                actor=audit_log.key_fingerprint(provided),
+                school_id=school,
+                detail={"path": path, "method": request.method},
+            )
             return JSONResponse(
                 status_code=401,
                 content={"status": "ERROR", "detail": "Missing X-MSOE-Signature header", "path": path},
@@ -152,6 +179,14 @@ async def require_api_key(request: Request, call_next):
         secret = API_KEYS.get(school, "")
         expected = hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
         if not hmac.compare_digest(signature, expected):
+            audit_log.record(
+                audit_log.EVENT_AUTH,
+                action=f"{request.method} {path}",
+                outcome="bad_webhook_signature",
+                actor=audit_log.key_fingerprint(provided),
+                school_id=school,
+                detail={"path": path, "method": request.method},
+            )
             return JSONResponse(
                 status_code=401,
                 content={"status": "ERROR", "detail": "Webhook signature verification failed", "path": path},
@@ -228,6 +263,16 @@ def neo4j_session():
 @app.on_event("startup")
 def _startup() -> None:
     global neo4j_driver
+    # FX.3 — additive staff columns (source of truth: schema.sql). Same
+    # ADD COLUMN IF NOT EXISTS idiom as ApprovalStore._ensure_schema.
+    with get_pg_cursor() as (cur, _conn):
+        cur.execute(
+            "ALTER TABLE staff ADD COLUMN IF NOT EXISTS "
+            "is_agency BOOLEAN NOT NULL DEFAULT false"
+        )
+        cur.execute(
+            "ALTER TABLE staff ADD COLUMN IF NOT EXISTS day_rate NUMERIC(10,2)"
+        )
     neo4j_driver = GraphDatabase.driver(
         NEO4J_URI,
         auth=(NEO4J_USER, NEO4J_PASSWORD),
@@ -442,10 +487,18 @@ guardrail = GuardrailEngine()
 # ---------------------------------------------------------------------------
 
 def pg_risk_students(school_id: str = "default", limit: int = 500) -> list[dict[str, Any]]:
-    """Fetch risk-flagged students from PostgreSQL across all three risk axes."""
+    """Fetch risk-flagged students from PostgreSQL across all three risk axes.
+
+    FX.4 — attendance_rate is float|None: None means *no data* (zero
+    attendance rows), never 100.0.  Such students join the review as their own
+    risk type (DATA_GAP) so a never-synced child cannot read as perfect
+    attendance.  DATA_GAP rows are ordered AFTER real risk cases so they can
+    never crowd out vax/attendance/fee findings under the LIMIT.
+    """
     sql = """
         WITH att AS (
             SELECT student_id,
+                   COUNT(*) AS attendance_records,
                    ROUND(100.0 * SUM(CASE WHEN status IN ('present','late')
                                           THEN 1 ELSE 0 END) / COUNT(*), 2) AS attendance_rate
             FROM attendance_logs
@@ -462,19 +515,22 @@ def pg_risk_students(school_id: str = "default", limit: int = 500) -> list[dict[
                s.grade_level, s.curriculum_track, s.school_name, s.emirate,
                s.parent_full_name, s.parent_email,
                s.vaccination_status, s.vaccination_expiry,
-               COALESCE(att.attendance_rate, 100.0) AS attendance_rate,
+               att.attendance_rate AS attendance_rate,
+               COALESCE(att.attendance_records, 0) AS attendance_records,
                COALESCE(fee.max_days_overdue, 0) AS max_days_overdue,
                (s.vaccination_status IN ('expired','missing')) AS flag_vax,
                (COALESCE(att.attendance_rate, 100.0) < 85) AS flag_att,
-               (COALESCE(fee.max_days_overdue, 0) > 60) AS flag_fee
+               (COALESCE(fee.max_days_overdue, 0) > 60) AS flag_fee,
+               (att.student_id IS NULL) AS flag_data_gap
         FROM students s
         LEFT JOIN att ON att.student_id = s.student_id
         LEFT JOIN fee ON fee.student_id = s.student_id
         WHERE s.school_id = %s
           AND (s.vaccination_status IN ('expired','missing')
            OR COALESCE(att.attendance_rate, 100.0) < 85
-           OR COALESCE(fee.max_days_overdue, 0) > 60)
-        ORDER BY s.grade_level, s.last_name
+           OR COALESCE(fee.max_days_overdue, 0) > 60
+           OR att.student_id IS NULL)
+        ORDER BY (att.student_id IS NULL), s.grade_level, s.last_name
         LIMIT %s
     """
     with get_pg_cursor() as (cur, _conn):
@@ -484,9 +540,15 @@ def pg_risk_students(school_id: str = "default", limit: int = 500) -> list[dict[
 
 
 def neo4j_policy_for_risk(risk_type: str, school_id: str = "default") -> list[dict[str, Any]]:
-    """Traverse Neo4j RiskFlag → Standard → Policy for a given risk type."""
+    """Traverse Neo4j RiskFlag → Standard → Policy for a given risk type.
+
+    Only the **current** revision of a policy is consulted
+    (``coalesce(p.status, 'active') = 'active'``), so a superseded clause can
+    never govern a new decision — while remaining queryable for inspection.
+    """
     cypher = """
         MATCH (rf:RiskFlag {type: $risk, school_id: $school_id})-[r:ADDRESSED_BY]->(s:Standard)-[:PART_OF]->(p:Policy)
+        WHERE coalesce(p.status, 'active') = 'active'
         OPTIONAL MATCH (p)-[:GOVERNS]->(d:Department)
         RETURN s.code AS standard_code,
                s.clause_number AS clause_number,
@@ -502,9 +564,15 @@ def neo4j_policy_for_risk(risk_type: str, school_id: str = "default") -> list[di
 
 
 def neo4j_all_competencies(school_id: str = "default") -> list[dict[str, Any]]:
+    # coalesce(..., 'default') matches the backfill migration in
+    # build_knowledge_graph.backfill_school_id: :Competency nodes created
+    # before school scoping carry no school_id and belong to 'default'.
     cypher = """
         MATCH (c:Competency)<-[:DEFINES]-(p:Policy)
-        WHERE p.title CONTAINS 'AI Curriculum'
+        WHERE coalesce(c.school_id, 'default') = $school_id
+          AND coalesce(p.school_id, 'default') = $school_id
+          AND p.title CONTAINS 'AI Curriculum'
+          AND coalesce(p.status, 'active') = 'active'
         RETURN c.code AS code, c.name AS name, c.description AS description,
                p.title AS policy_title, p.source_file AS source_file,
                p.reference AS policy_reference,
@@ -512,13 +580,14 @@ def neo4j_all_competencies(school_id: str = "default") -> list[dict[str, Any]]:
         ORDER BY c.code
     """
     with neo4j_session() as session:
-        return [dict(r) for r in session.run(cypher)]
+        return [dict(r) for r in session.run(cypher, school_id=school_id)]
 
 
 def neo4j_student_risk_paths(school_id: str = "default", limit: int = 100) -> list[dict[str, Any]]:
     cypher = """
         MATCH path = (s:Student)-[:HAS_RISK]->(rf:RiskFlag)-[:ADDRESSED_BY]->(std:Standard)-[:PART_OF]->(p:Policy)
         WHERE s.school_id = $school_id
+          AND coalesce(p.status, 'active') = 'active'
         RETURN s.student_id AS student_id,
                s.full_name AS student_name,
                s.grade_level AS grade_level,
@@ -553,6 +622,7 @@ def neo4j_query_paths_for_exec(grades: list[int], risk_type: str,
         MATCH path = (s:Student)-[:HAS_RISK]->(rf:RiskFlag {{type: $risk}})
                       -[:ADDRESSED_BY]->(std:Standard)-[:PART_OF]->(p:Policy)
         {grade_filter}
+          AND coalesce(p.status, 'active') = 'active'
         RETURN s.student_id AS student_id,
                s.full_name AS student_name,
                s.grade_level AS grade_level,
@@ -693,20 +763,27 @@ class ApprovalExecuteResponse(BaseModel):
 
 
 class SISWebhookPayload(BaseModel):
-    """Real-time SIS/LMS webhook (Gibbon / OpenEduCat / Canvas-style)."""
+    """Real-time SIS/LMS webhook (Gibbon / OpenEduCat / Canvas / OneRoster / Graph / iSAMS / PowerSchool / CSV drop)."""
     event: Optional[str] = Field(None, description="e.g. sis.student.updated")
     data: Optional[dict[str, Any]] = Field(None, description="Event object")
-    dialect: Optional[str] = Field(None, description="gibbon | openeducat | canvas")
+    dialect: Optional[str] = Field(
+        None,
+        description="gibbon | openeducat | canvas | oneroster-csv | oneroster-rest | graph_education | isams | powerschool | csv_drop")
     school_id: Optional[str] = Field("default", description="School identifier")
 
 
 class SISBatchPayload(BaseModel):
     """Batched SIS sync (nightly export / bulk import)."""
-    dialect: Optional[str] = Field(None, description="gibbon | openeducat | canvas")
+    dialect: Optional[str] = Field(
+        None,
+        description="gibbon | openeducat | canvas | oneroster-csv | oneroster-rest | graph_education | isams | powerschool | csv_drop")
     students: list[dict[str, Any]] = Field(default_factory=list)
     attendance: list[dict[str, Any]] = Field(default_factory=list)
     fees: list[dict[str, Any]] = Field(default_factory=list)
     staff: list[dict[str, Any]] = Field(default_factory=list)
+    # OneRoster 1.2 bulk set (orgs/users/classes/courses/enrollments/demographics)
+    oneroster: Optional[dict[str, Any]] = Field(
+        None, description="OneRoster bulk set when dialect is oneroster-csv/-rest")
     sync_graph: bool = Field(True, description="Mirror students/risks into Neo4j")
     school_id: Optional[str] = Field("default", description="School identifier")
 
@@ -805,7 +882,8 @@ def _simulate_execution(record: dict[str, Any]) -> dict[str, Any]:
 
 @app.post("/api/v1/approvals/{action_id}/execute",
           response_model=ApprovalExecuteResponse)
-def execute_approval(action_id: str, body: ApprovalDecision) -> ApprovalExecuteResponse:
+def execute_approval(action_id: str, body: ApprovalDecision,
+                     request: Request) -> ApprovalExecuteResponse:
     record = approval_store.get(action_id)
     if record is None:
         raise HTTPException(status_code=404, detail=f"Action '{action_id}' not found")
@@ -815,8 +893,22 @@ def execute_approval(action_id: str, body: ApprovalDecision) -> ApprovalExecuteR
             detail=f"Action '{action_id}' already resolved as {record['status']}",
         )
 
+    caller_school = getattr(request.state, "school_id", "default")
+    action_school = record.get("school_id") or caller_school or "default"
+    actor = body.reviewer or caller_school
+
     if body.decision == "reject":
         resolved = approval_store.resolve(action_id, "REJECTED", None)
+        audit_log.record(
+            audit_log.EVENT_APPROVAL,
+            action=record["action"],
+            outcome="REJECTED",
+            actor=actor,
+            school_id=action_school,
+            detail={"action_id": action_id, "decision": "reject",
+                    "reviewer": body.reviewer, "api_school_id": caller_school,
+                    "note": body.note or "Rejected by human reviewer."},
+        )
         return ApprovalExecuteResponse(
             status="REJECTED",
             action_id=action_id,
@@ -829,6 +921,26 @@ def execute_approval(action_id: str, body: ApprovalDecision) -> ApprovalExecuteR
 
     result = _simulate_execution(record)
     resolved = approval_store.resolve(action_id, "APPROVED", result)
+    # K.5: the approval decision and the side effect it authorised are two
+    # distinct facts — both land in the audit log.
+    audit_log.record(
+        audit_log.EVENT_APPROVAL,
+        action=record["action"],
+        outcome="APPROVED",
+        actor=actor,
+        school_id=action_school,
+        detail={"action_id": action_id, "decision": "approve",
+                "reviewer": body.reviewer, "api_school_id": caller_school,
+                "note": body.note},
+    )
+    audit_log.record(
+        audit_log.EVENT_SIDE_EFFECT,
+        action=record["action"],
+        outcome="EXECUTED" if not result.get("simulated") else "SIMULATED",
+        actor=actor,
+        school_id=action_school,
+        detail={"action_id": action_id, "result": result},
+    )
     return ApprovalExecuteResponse(
         status="EXECUTED",
         action_id=action_id,
@@ -865,6 +977,7 @@ def root() -> JSONResponse:
 <br><code>POST /api/v1/executive/query</code>
 <br><code>GET  /api/v1/approvals/pending</code>
 <br><code>POST /api/v1/approvals/{action_id}/execute</code>
+<br><code>GET  /api/v1/audit/log</code> — who approved what, when
 </div>
 <div class="card"><strong>SIS Integration</strong>
 <br><code>POST /api/v1/sis/webhook</code> — real-time LMS hooks
@@ -898,10 +1011,17 @@ def health() -> dict[str, Any]:
         f"[health] pg={pg_ok} ({t1-t0:.2f}s) neo={neo_ok} ({_time.perf_counter()-t1:.2f}s)",
         flush=True,
     )
+    # K.7 — the deployment must state where it runs (UAE region) or /health
+    # reports degraded. See docs/compliance/DATA-RESIDENCY.md.
+    residency = residency_check_region()
+    if not residency["allowed"]:
+        print(f"[health] RESIDENCY CLAIM INVALID: {residency}", flush=True)
     return {
-        "status": "healthy" if (pg_ok and neo_ok) else "degraded",
+        "status": "healthy" if (pg_ok and neo_ok and residency["allowed"]) else "degraded",
         "postgres": "connected" if pg_ok else "unavailable",
         "neo4j": "connected" if neo_ok else "unavailable",
+        "data_region": residency["value"],
+        "residency": residency,
         "llm": llm.status(),
     }
 
@@ -976,6 +1096,7 @@ def audit_compliance(req: ComplianceRequest) -> ComplianceResponse:
         risk_clause_cache[rt] = neo4j_policy_for_risk(rt, school_id=school_id)
 
     violations: list[dict[str, Any]] = []
+    gap_violations: list[dict[str, Any]] = []
     notifications: list[dict[str, Any]] = []
     citations: list[dict[str, Any]] = []
     seen_citations: set[str] = set()
@@ -1004,7 +1125,8 @@ def audit_compliance(req: ComplianceRequest) -> ComplianceResponse:
                 "risk_type": risk,
                 "risk_detail": {
                     "vaccination_status": s["vaccination_status"],
-                    "attendance_rate": float(s["attendance_rate"]),
+                    "attendance_rate": (None if s["attendance_rate"] is None
+                                        else float(s["attendance_rate"])),
                     "max_days_overdue": int(s["max_days_overdue"]),
                 },
                 "governing_clause": {
@@ -1056,6 +1178,40 @@ def audit_compliance(req: ComplianceRequest) -> ComplianceResponse:
                         "standard_code": clause.get("standard_code"),
                     }
                 )
+
+        # FX.4 — zero attendance rows is its own internal ops risk type.  It is
+        # recorded for audit visibility but NEVER enters the notification
+        # drafting loop: no SEND_PARENT_NOTIFICATION is staged for it, ever.
+        if s["flag_data_gap"]:
+            gap_violations.append(
+                {
+                    "student_id": s["student_id"],
+                    "emirates_id": s["emirates_id"],
+                    "student_name": f"{s['first_name']} {s['last_name']}",
+                    "grade_level": s["grade_level"],
+                    "school_name": s["school_name"],
+                    "emirate": s["emirate"],
+                    "risk_type": "DATA_GAP",
+                    "risk_detail": {
+                        "vaccination_status": s["vaccination_status"],
+                        "attendance_rate": None,
+                        "attendance_records": int(s["attendance_records"]),
+                        "max_days_overdue": int(s["max_days_overdue"]),
+                    },
+                    "governing_clause": {
+                        "policy_title": None,
+                        "clause_number": None,
+                        "heading": None,
+                        "source_file": None,
+                        "standard_code": None,
+                        "departments": [],
+                    },
+                }
+            )
+
+    # Data-gap cases are ordered AFTER every real risk case so they cannot
+    # crowd out vax/attendance/fee findings in the response.
+    violations.extend(gap_violations)
 
     # Phase 2 — draft every parent notification under one wall-clock budget.
     note_bodies = draft_parent_notifications(draft_jobs)
@@ -1116,7 +1272,7 @@ def audit_compliance(req: ComplianceRequest) -> ComplianceResponse:
 
     return ComplianceResponse(
         status="PENDING_HUMAN_APPROVAL" if violations else "COMPLIANT",
-        generated_at=datetime.utcnow().isoformat() + "Z",
+        generated_at=datetime.now(timezone.utc).isoformat(),
         summary=summary,
         total_students=len({v["student_id"] for v in violations}),
         violations=violations[:100],
@@ -1236,6 +1392,100 @@ def curriculum_harmonize(req: HarmonizeRequest) -> HarmonizeResponse:
 # Service 3 — Operational Friction Reducer (Substitute Dispatch)
 # ---------------------------------------------------------------------------
 
+# FX.2 — subject vocabulary.  Explicitly enumerated keys only: no fuzzy
+# matching, no LLM, no external config.  A variant absent from the maps is its
+# own token and matches only by exact normalised equality (honest empty).
+SUBJECT_ALIASES: dict[str, str] = {
+    # normalised variant -> canonical token
+    "math": "mathematics",
+    "maths": "mathematics",
+    "mathematics": "mathematics",
+    "science": "science",
+    "sciences": "science",
+    "general science": "science",
+    "physics": "physics",
+    "chemistry": "chemistry",
+    "biology": "biology",
+    "english": "english",
+    "english language": "english",
+    "language arts": "english",
+    "arabic": "arabic",
+    "french": "french",
+    "history": "history",
+    "geography": "geography",
+    "art": "art",
+    "arts": "art",
+    "visual art": "art",
+    "music": "music",
+    "drama": "drama",
+    "computer science": "computer science",
+    "computing": "computer science",
+    "cs": "computer science",
+    "physical education": "physical education",
+    "pe": "physical education",
+}
+
+# Canonical token -> shared group (department-level fallback).  Two subjects
+# match at group level only when both carry a group and the groups are equal.
+SUBJECT_GROUPS: dict[str, str] = {
+    "physics": "science",
+    "chemistry": "science",
+    "biology": "science",
+    "science": "science",
+    "mathematics": "mathematics",
+    "statistics": "mathematics",
+    "history": "humanities",
+    "geography": "humanities",
+    "english": "languages",
+    "arabic": "languages",
+    "french": "languages",
+    "art": "creative",
+    "music": "creative",
+    "drama": "creative",
+    "computer science": "computing",
+    "physical education": "physical",
+}
+
+
+def _norm_ws(value: str) -> str:
+    """FX.1 — strip, casefold, collapse internal whitespace."""
+    return " ".join(value.strip().casefold().split())
+
+
+def _fuzzy_name_hit(query: str, full_name: str) -> bool:
+    """FX.1 substring step on already-normalised strings.
+
+    The query may appear inside the name, and any single name word may appear
+    inside the query — so a short form like "Johnny" cannot silently resolve
+    while "John Smith" is also on the roll.
+    """
+    if not query:
+        return False
+    if query in full_name:
+        return True
+    return any(word in query for word in full_name.split())
+
+
+_SUBJECT_RULE_RANK = {"exact": 3, "alias": 2, "group": 1}
+
+
+def _subject_match(needed: str, held: str) -> Optional[str]:
+    """FX.2 precedence: canonical equality -> alias -> group. None = no match."""
+    n_need, n_hold = _norm_ws(needed), _norm_ws(held)
+    if not n_need or not n_hold:
+        return None
+    if n_need == n_hold:
+        return "exact"
+    c_need = SUBJECT_ALIASES.get(n_need, n_need)
+    c_hold = SUBJECT_ALIASES.get(n_hold, n_hold)
+    if c_need == c_hold:
+        return "alias"
+    g_need, g_hold = SUBJECT_GROUPS.get(c_need), SUBJECT_GROUPS.get(c_hold)
+    if g_need is not None and g_need == g_hold:
+        return "group"
+    return None
+
+
 @app.post("/api/v1/operations/substitute-dispatch", response_model=SubstituteResponse)
 def substitute_dispatch(req: SubstituteRequest) -> SubstituteResponse:
     guardrail.assert_no_write("substitute_dispatch")
@@ -1244,38 +1494,74 @@ def substitute_dispatch(req: SubstituteRequest) -> SubstituteResponse:
     engagement_id = req.engagement_id or "default"
 
     with get_pg_cursor() as (cur, _conn):
-        # Identify the requesting teacher
+        # Identify the requesting teacher (FX.1: normalised, exact first,
+        # substring only when unique, 404/409 otherwise — never LIMIT 1).
         cur.execute(
-            "SELECT staff_id, full_name, email, subjects, is_available, max_periods, assigned "
-            "FROM staff WHERE full_name ILIKE %s AND school_id = %s LIMIT 1",
-            (f"%{req.teacher_name}%", school_id),
+            "SELECT staff_id, full_name, email, subjects, is_available, "
+            "max_periods, assigned, is_agency, day_rate "
+            "FROM staff WHERE school_id = %s",
+            (school_id,),
         )
-        row = cur.fetchone()
-        if not row:
-            raise HTTPException(status_code=404, detail=f"Teacher '{req.teacher_name}' not found")
         cols = [d[0] for d in cur.description]
-        teacher = dict(zip(cols, row))
+        roll = [dict(zip(cols, r)) for r in cur.fetchall()]
+        query_name = _norm_ws(req.teacher_name)
+        exact = [r for r in roll if _norm_ws(r["full_name"]) == query_name]
+        if len(exact) == 1:
+            teacher = exact[0]
+        elif len(exact) > 1:
+            names = ", ".join(sorted(r["full_name"] for r in exact))
+            raise HTTPException(
+                status_code=409,
+                detail=f"Teacher name '{req.teacher_name}' is ambiguous "
+                       f"({len(exact)} staff match exactly): {names}. "
+                       f"Provide a unique full name.",
+            )
+        else:
+            fuzzy = [r for r in roll if _fuzzy_name_hit(query_name, _norm_ws(r["full_name"]))]
+            if len(fuzzy) == 1:
+                teacher = fuzzy[0]
+            elif len(fuzzy) > 1:
+                names = ", ".join(sorted(r["full_name"] for r in fuzzy))
+                raise HTTPException(
+                    status_code=409,
+                    detail=f"Teacher name '{req.teacher_name}' is ambiguous "
+                           f"({len(fuzzy)} possible matches): {names}. "
+                           f"Provide the exact full name.",
+                )
+            else:
+                raise HTTPException(
+                    status_code=404,
+                    detail=f"Teacher '{req.teacher_name}' not found",
+                )
 
-        # Find available substitutes with matching subject clearance and capacity
+        # FX.2/FX.3 — find available substitutes with matching subject
+        # clearance and capacity, then rank on the cost-aware ladder.
         cur.execute(
             """
-            SELECT staff_id, full_name, email, subjects, assigned, max_periods
+            SELECT staff_id, full_name, email, subjects, assigned, max_periods,
+                   is_agency, day_rate
             FROM staff
             WHERE is_available = TRUE
               AND school_id = %s
               AND staff_id <> %s
-              AND %s = ANY(subjects)
               AND (assigned + %s) <= max_periods
-            ORDER BY (max_periods - assigned) DESC, full_name
-            LIMIT 10
             """,
-            (school_id, teacher["staff_id"], req.subject_needed, req.periods),
+            (school_id, teacher["staff_id"], req.periods),
         )
         sub_cols = [d[0] for d in cur.description]
-        candidates = []
+        matched: list[dict[str, Any]] = []
         for r in cur.fetchall():
             d = dict(zip(sub_cols, r))
-            candidates.append(
+            best_rule: Optional[str] = None
+            for subject in d["subjects"]:
+                rule = _subject_match(req.subject_needed, subject)
+                if rule and (best_rule is None
+                             or _SUBJECT_RULE_RANK[rule] > _SUBJECT_RULE_RANK[best_rule]):
+                    best_rule = rule
+            if best_rule is None:
+                continue
+            day_rate = None if d["day_rate"] is None else float(d["day_rate"])
+            matched.append(
                 {
                     "staff_id": d["staff_id"],
                     "full_name": d["full_name"],
@@ -1284,10 +1570,34 @@ def substitute_dispatch(req: SubstituteRequest) -> SubstituteResponse:
                     "assigned": d["assigned"],
                     "max_periods": d["max_periods"],
                     "capacity_remaining": d["max_periods"] - d["assigned"],
+                    "subject_match_rule": best_rule,
+                    "cover_class": "agency" if d["is_agency"] else "internal",
+                    "day_rate": day_rate,
                 }
             )
 
+        # FX.3 ranking ladder, deterministic: internal before agency; lower
+        # day_rate (NULL last within class); larger remaining capacity;
+        # full_name ASC.  Ordering only — no money language.
+        matched.sort(key=lambda c: (
+            1 if c["cover_class"] == "agency" else 0,
+            c["day_rate"] is None,
+            c["day_rate"] if c["day_rate"] is not None else 0.0,
+            -c["capacity_remaining"],
+            c["full_name"],
+        ))
+        candidates = matched[:10]
+
         recommended = candidates[0] if candidates else None
+        recommendation_reason = None
+        if recommended is not None:
+            rate_part = ("no day rate" if recommended["day_rate"] is None
+                         else f"day rate {recommended['day_rate']}")
+            recommendation_reason = (
+                f"{recommended['cover_class']} cover, "
+                f"capacity {recommended['capacity_remaining']}, {rate_part}"
+            )
+            recommended = {**recommended, "recommendation_reason": recommendation_reason}
 
         # Leave request record (writes are staged as PENDING_HUMAN_APPROVAL)
         leave_payload = {
@@ -1575,15 +1885,103 @@ async def sis_webhook(request: Request, payload: SISWebhookPayload) -> dict[str,
     school = getattr(request.state, "school_id", "default")
     body = payload.model_dump(exclude_none=True)
     sid = payload.school_id or school or "default"
-    return sis_adapter.handle_webhook(body, dialect=payload.dialect, school_id=sid)
+    try:
+        result = sis_adapter.handle_webhook(body, dialect=payload.dialect, school_id=sid)
+        audit_log.record(
+            audit_log.EVENT_SYNC,
+            action="sis.webhook",
+            outcome=str(result.get("status", "OK")),
+            actor=school,
+            school_id=sid,
+            detail={"dialect": payload.dialect, "result": result},
+        )
+        return result
+    except Exception as exc:
+        audit_log.record(
+            audit_log.EVENT_SYNC,
+            action="sis.webhook",
+            outcome="ERROR",
+            actor=school,
+            school_id=sid,
+            detail={"dialect": payload.dialect, "error": f"{exc.__class__.__name__}: {exc}"},
+        )
+        raise
 
 
 @app.post("/api/v1/sis/sync")
-def sis_batch_sync(payload: SISBatchPayload) -> dict[str, Any]:
+def sis_batch_sync(payload: SISBatchPayload, request: Request) -> dict[str, Any]:
     """Batched upsert of Students / Attendance / Fees / Staff (+ optional graph)."""
     body = payload.model_dump()
     body.setdefault("school_id", payload.school_id or "default")
-    return sis_adapter.batch_sync(body)
+    school = getattr(request.state, "school_id", "default")
+    try:
+        result = sis_adapter.batch_sync(body)
+        audit_log.record(
+            audit_log.EVENT_SYNC,
+            action="sis.sync",
+            outcome=str(result.get("status", "OK")),
+            actor=school,
+            school_id=body.get("school_id") or "default",
+            detail={"dialect": payload.dialect,
+                    "counts": {k: v for k, v in result.items() if isinstance(v, int)}},
+        )
+        return result
+    except Exception as exc:
+        audit_log.record(
+            audit_log.EVENT_SYNC,
+            action="sis.sync",
+            outcome="ERROR",
+            actor=school,
+            school_id=body.get("school_id") or "default",
+            detail={"dialect": payload.dialect, "error": f"{exc.__class__.__name__}: {exc}"},
+        )
+        raise
+
+
+@app.get("/api/v1/audit/log")
+def get_audit_log(request: Request,
+                  school_id: Optional[str] = None,
+                  since: Optional[str] = None,
+                  limit: int = 200) -> dict[str, Any]:
+    """Inspector's answer to 'who approved this parent letter?'.
+
+    Returns every approval decision, side effect, sync run and auth
+    rejection for one school, newest first. A caller sees its own school
+    (from its API key) by default; another school's log is refused, and
+    the refusal itself is recorded as an auth rejection. The
+    ``unauthenticated`` bucket (bad/missing API keys) contains no client
+    data and is readable by any authenticated caller.
+    """
+    guardrail.assert_no_write("get_audit_log")
+    caller = getattr(request.state, "school_id", "default")
+    target = school_id or caller
+    if target != caller and target != audit_log.UNAUTHENTICATED:
+        audit_log.record(
+            audit_log.EVENT_AUTH,
+            action="GET /api/v1/audit/log",
+            outcome="cross_school_denied",
+            actor=caller,
+            school_id=caller,
+            detail={"requested_school_id": target},
+        )
+        raise HTTPException(
+            status_code=403,
+            detail=f"Cross-school audit query refused: key is scoped to '{caller}'",
+        )
+    try:
+        entries = audit_log.query(target, since=since, limit=limit)
+    except ValueError:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid 'since' — use an ISO date or datetime (e.g. 2026-10-01)",
+        )
+    return {
+        "status": "OK",
+        "school_id": target,
+        "since": since,
+        "count": len(entries),
+        "entries": entries,
+    }
 
 
 # ---------------------------------------------------------------------------

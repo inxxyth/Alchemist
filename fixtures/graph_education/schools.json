@@ -1,0 +1,21 @@
+{
+  "value": [
+    {
+      "@odata.type": "#microsoft.graph.educationSchool",
+      "id": "graph-school-001",
+      "displayName": "SYNTHETIC Graph Academy - Campus A",
+      "externalSource": "sis",
+      "externalId": "TEST-SCH-A",
+      "phone": "",
+      "email": "office@synthetic.example",
+      "webSite": "https://synthetic.example"
+    },
+    {
+      "@odata.type": "#microsoft.graph.educationSchool",
+      "id": "graph-school-002",
+      "displayName": "SYNTHETIC Graph Academy - Campus B",
+      "externalSource": "sis",
+      "externalId": "TEST-SCH-B"
+    }
+  ]
+}

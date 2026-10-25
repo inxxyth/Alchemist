@@ -120,6 +120,10 @@ CREATE TABLE IF NOT EXISTS staff (
 
 ALTER TABLE staff ADD COLUMN IF NOT EXISTS school_id VARCHAR(64) NOT NULL DEFAULT 'default';
 ALTER TABLE staff ADD COLUMN IF NOT EXISTS source_staff_id VARCHAR(64);
+-- FX.3 cost-aware cover ranking (additive only). is_agency defaults false for
+-- SIS-sourced staff; day_rate stays NULL when no rate is known (sorts last).
+ALTER TABLE staff ADD COLUMN IF NOT EXISTS is_agency BOOLEAN NOT NULL DEFAULT false;
+ALTER TABLE staff ADD COLUMN IF NOT EXISTS day_rate NUMERIC(10,2);
 ALTER TABLE staff DROP CONSTRAINT IF EXISTS staff_email_key;
 CREATE UNIQUE INDEX IF NOT EXISTS staff_school_email_uidx
     ON staff (school_id, email);
@@ -188,3 +192,36 @@ ALTER TABLE approval_actions ADD COLUMN IF NOT EXISTS school_id VARCHAR(64) NOT 
 CREATE SEQUENCE IF NOT EXISTS approval_actions_seq START 1;
 CREATE INDEX IF NOT EXISTS idx_approval_actions_status ON approval_actions (status);
 CREATE INDEX IF NOT EXISTS idx_approval_actions_school  ON approval_actions (school_id);
+
+-- ---------------------------------------------------------------------------
+-- connector_state  (delta tokens / watermarks per connector + school_id)
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS connector_state (
+    connector   VARCHAR(64)  NOT NULL,
+    school_id   VARCHAR(64)  NOT NULL,
+    state_key   VARCHAR(64)  NOT NULL,
+    state_value TEXT,
+    updated_at  TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
+    PRIMARY KEY (connector, school_id, state_key)
+);
+CREATE INDEX IF NOT EXISTS idx_connector_state_school ON connector_state (school_id);
+
+-- ---------------------------------------------------------------------------
+-- audit_log  (Phase 6 / K.5 — who did what, when, with what outcome)
+-- Every approval decision, every side effect executed, every sync run and
+-- every auth rejection.  Retention: MSOE_RETENTION_DAYS via retention_sweep.py
+-- (see docs/compliance/DATA-RESIDENCY.md).  Never stores secret values.
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS audit_log (
+    id          BIGSERIAL    PRIMARY KEY,
+    school_id   VARCHAR(64)  NOT NULL DEFAULT 'default',
+    actor       VARCHAR(128) NOT NULL,
+    event_type  VARCHAR(48)  NOT NULL,
+    action      VARCHAR(128) NOT NULL,
+    outcome     VARCHAR(64)  NOT NULL,
+    detail      JSONB        NOT NULL DEFAULT '{}',
+    occurred_at TIMESTAMPTZ  NOT NULL DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS idx_audit_log_school ON audit_log (school_id, occurred_at);
+CREATE INDEX IF NOT EXISTS idx_audit_log_type   ON audit_log (event_type);
+CREATE INDEX IF NOT EXISTS idx_audit_log_when   ON audit_log (occurred_at);

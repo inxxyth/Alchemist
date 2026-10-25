@@ -1,0 +1,4 @@
+source_student_id,first_name,last_name,gender,date_of_birth,grade_level,parent_full_name,parent_email,is_active
+CSV-001,Testone,Droppy,F,2012-05-01,7,Parent One,parent1@synthetic.example,true
+CSV-002,Testtwo,Droppy,M,2011-03-14,8,Parent Two,parent2@synthetic.example,false
+CSV-003,Testthree,Droppy,X,2013-11-30,6,Parent Three,parent3@synthetic.example,TRUE

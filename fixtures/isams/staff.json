@@ -1,0 +1,33 @@
+{
+  "staff": [
+    {
+      "StaffId": "ISAMS-S01",
+      "FirstName": "Sarah",
+      "Surname": "Whitfield",
+      "FullName": "Ms Sarah Whitfield",
+      "Email": "s.whitfield@synthetic.example",
+      "Role": "Head of Maths",
+      "Subjects": "Mathematics, Further Maths",
+      "IsActive": true,
+      "MaxPeriods": 24,
+      "AssignedPeriods": 18
+    },
+    {
+      "StaffId": "ISAMS-S02",
+      "FirstName": "Omar",
+      "Surname": "Haddad",
+      "Email": "o.haddad@synthetic.example",
+      "Role": "teacher",
+      "Status": "Left"
+    },
+    {
+      "StaffId": "ISAMS-S03",
+      "FirstName": "Li",
+      "Surname": "Wei",
+      "FullName": "Dr Li Wei",
+      "Email": "l.wei@synthetic.example",
+      "IsActive": false,
+      "Subjects": ["Physics"]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+source_student_id,invoice_number,amount_due,amount_paid,term_label,due_date,status,days_overdue
+CSV-001,CSV-INV-1,1000.0,1000.0,Term 2 AY2025-26,2026-01-15,paid,0
+CSV-002,CSV-INV-2,800.0,0.0,Term 2 AY2025-26,2026-01-15,,10
+CSV-002,CSV-INV-2,800.0,0.0,Term 2 AY2025-26,2026-01-15,,10

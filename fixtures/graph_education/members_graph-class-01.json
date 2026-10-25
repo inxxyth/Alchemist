@@ -1,0 +1,18 @@
+{
+  "value": [
+    {
+      "@odata.type": "#microsoft.graph.educationUser",
+      "id": "graph-user-1001",
+      "displayName": "TEST Student Alpha",
+      "primaryRole": "student",
+      "roles": ["student"]
+    },
+    {
+      "@odata.type": "#microsoft.graph.educationUser",
+      "id": "graph-user-2001",
+      "displayName": "TEST Teacher One",
+      "primaryRole": "teacher",
+      "roles": ["teacher"]
+    }
+  ]
+}

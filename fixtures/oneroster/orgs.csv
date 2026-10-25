@@ -1,0 +1,4 @@
+sourcedId,status,name,type,identifier,parentSourcedId
+org-camp-a,active,SYNTHETIC OneRoster Academy - Campus A,school,TEST-SCH-A,
+org-camp-b,active,SYNTHETIC OneRoster Academy - Campus B,school,TEST-SCH-B,
+org-root,active,SYNTHETIC OneRoster Academy Trust,district,TEST-TRUST,
